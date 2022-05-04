@@ -20,6 +20,7 @@ All snippets are start with `nw`:
 | `nwa`   | `nw.App.*` |
 | `nwc`   | `nw.Clipboard.*` |
 | `nwm`   | `nw.Menu.*` |
+| `nwp`   | `process.*` |
 | `nws`   | `nw.Screen.*` |
 | `nwshe` | `nw.Shell.*` |
 | `nwsho` | `nw.Shortcut.*` |

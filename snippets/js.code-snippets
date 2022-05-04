@@ -122,17 +122,17 @@
     "description": " This is a Mac specific feature. This event is sent when the user clicks the dock icon for an already running application."
   },
   "process.versions.nw": {
-    "prefix": "process.versions.nw",
-    "body": "process.versions.nw",
+    "prefix": "nw.process.versions.nw",
+    "body": "nw.process.versions.nw",
     "description": " NW.js's version."
   },
   "process.versions['nw-flavor']": {
-    "prefix": "process.versions['nw-flavor']",
+    "prefix": "nw.process.versions['nw-flavor']",
     "body": "process.versions['nw-flavor']",
     "description": " `sdk` when the binary is SDK build, or `normal` when the binary is normal build."
   },
   "process.mainModule": {
-    "prefix": "process.mainModule",
+    "prefix": "nw.process.mainModule",
     "body": "process.mainModule",
     "description": " `process.mainModule` is set for the start page (such as `index.html`) as specified in the manifest’s `main` field. However, when the `node-main` field is also specified in the manifest, `process.mainModule` points to the file specified in the `node-main` field."
   },
@@ -650,7 +650,7 @@
     "description": " Remove the tray.\n\n Once removed, you will not be able to show it again and you should set your tray variable to `null` to make it garbage collected. There is no way temporarily hide a tray icon."
   },
   "tray.on(\"click\", () => {})": {
-    "prefix": "tray.on(\"click\", () => {})",
+    "prefix": "nw.tray.on(\"click\", () => {})",
     "body": [
       "tray.on(\"click\", () => {",
       "  ${1}",
@@ -1313,7 +1313,7 @@
     "description": " Removes all listeners, or those of the specified `eventName`."
   },
   "win.on(\"close\", () => {})": {
-    "prefix": "win.on(\"close\", () => {})",
+    "prefix": "nw.win.on(\"close\", () => {})",
     "body": [
       "win.on(\"close\", function () {",
       "  ${1}",
@@ -1322,7 +1322,7 @@
     "description": " The `close` event is a special event that will affect the result of the `Window.close()` function. If developer is listening to the `close` event of a window, the `Window.close()` emit the `close` event without closing the window.\n\n Usually you would do some shutdown work in the callback of `close` event, and then call `this.close(true)` to really close the window, which will not be caught again. Forgetting to add true when calling `this.close()` in the callback will result in infinite loop.\n\n And if the shutdown work takes some time, users may feel that the app is exiting slowly, which is bad experience, so you could just hide the window in the `close` event before really closing it to make a smooth user experience.\n\n **Mac**\n On Mac, there is an argument passed to the callback indicating whether it’s being closed by ⌘+Q. It will be set to string `quit` if that’s true, otherwise `undefined`."
   },
   "win.on(\"closed\", () => {})": {
-    "prefix": "win.on(\"closed\", () => {})",
+    "prefix": "nw.win.on(\"closed\", () => {})",
     "body": [
       "win.on(\"closed\", function () {",
       "  ${1}",
@@ -1331,7 +1331,7 @@
     "description": " The `closed` event is emitted after the corresponding window is closed. Normally you will not be able to get this event since after the window is closed all js objects will be released. But it is useful when listening to the window’s events in another window, whose objects will not be released."
   },
   "win.on(\"loading\", () => {})": {
-    "prefix": "win.on(\"loading\", () => {})",
+    "prefix": "nw.win.on(\"loading\", () => {})",
     "body": [
       "win.on(\"loading\", function () {",
       "  ${1}",
@@ -1340,7 +1340,7 @@
     "description": " Emitted when the window starts to reload, normally you cannot catch this event because usually it’s emitted before you actually setup the callback.\n\n The only situation that you can catch this event is when you refresh the window and listen to this event in another window."
   },
   "win.on(\"loaded\", () => {})": {
-    "prefix": "win.on(\"loaded\", () => {})",
+    "prefix": "nw.win.on(\"loaded\", () => {})",
     "body": [
       "win.on(\"loaded\", function () {",
       "  ${1}",
@@ -1349,7 +1349,7 @@
     "description": " Emitted when the window is fully loaded, this event behaves the same with `window.onload`, but doesn’t rely on the DOM."
   },
   "win.on(\"document-start\", (frame) => {})": {
-    "prefix": "win.on(\"document-start\", (frame) => {})",
+    "prefix": "nw.win.on(\"document-start\", (frame) => {})",
     "body": [
       "win.on(\"document-start\", function (frame) {",
       "  ${1}",
@@ -1358,7 +1358,7 @@
     "description": " - `frame` `{HTMLIFrameElement}` is the iframe object, or `null` if the event is for the window.\n Emitted when the document object in this window or a child iframe is available, after all files are loaded, but before DOM is constructed or any script is run.\n It will not be fired on the new window being created with nw.Window.open(): the callback of that function will be fired at the same point of this event.\n\n See `inject_js_start` in [Manifest-format](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#inject_js_start)."
   },
   "win.on(\"document-end\", (frame) => {})": {
-    "prefix": "win.on(\"document-end\", (frame) => {})",
+    "prefix": "nw.win.on(\"document-end\", (frame) => {})",
     "body": [
       "win.on(\"document-end\", function (frame) {",
       "  ${1}",
@@ -1367,7 +1367,7 @@
     "description": " - `frame` `{HTMLIFrameElement}` is the iframe object, or `null` if the event is for the window.\n Emitted when the document object in this window or a child iframe is `unloaded`, but before the onunload event is emitted.\n\n See `inject_js_end` in [Manifest-format](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#inject_js_start)."
   },
   "win.on(\"focus\", () => {})": {
-    "prefix": "win.on(\"focus\", () => {})",
+    "prefix": "nw.win.on(\"focus\", () => {})",
     "body": [
       "win.on(\"focus\", function () {",
       "  ${1}",
@@ -1376,7 +1376,7 @@
     "description": " Emitted when window gets focus."
   },
   "win.on(\"blur\", () => {})": {
-    "prefix": "win.on(\"blur\", () => {})",
+    "prefix": "nw.win.on(\"blur\", () => {})",
     "body": [
       "win.on(\"blur\", function () {",
       "  ${1}",
@@ -1385,7 +1385,7 @@
     "description": " Emitted when window loses focus."
   },
   "win.on(\"minimize\", () => {})": {
-    "prefix": "win.on(\"minimize\", () => {})",
+    "prefix": "nw.win.on(\"minimize\", () => {})",
     "body": [
       "win.on(\"minimize\", function () {",
       "  ${1}",
@@ -1394,7 +1394,7 @@
     "description": " Emitted when window is minimized."
   },
   "win.on(\"restore\", () => {})": {
-    "prefix": "win.on(\"restore\", () => {})",
+    "prefix": "nw.win.on(\"restore\", () => {})",
     "body": [
       "win.on(\"restore\", function () {",
       "  ${1}",
@@ -1403,7 +1403,7 @@
     "description": " Emitted when window is restored from minimize, maximize and fullscreen state."
   },
   "win.on(\"maximize\", () => {})": {
-    "prefix": "win.on(\"maximize\", () => {})",
+    "prefix": "nw.win.on(\"maximize\", () => {})",
     "body": [
       "win.on(\"maximize\", function () {",
       "  ${1}",
@@ -1412,7 +1412,7 @@
     "description": " Emitted when window is maximized."
   },
   "win.on(\"move\", (x, y) => {})": {
-    "prefix": "win.on(\"move\", (x, y) => {})",
+    "prefix": "nw.win.on(\"move\", (x, y) => {})",
     "body": [
       "win.on(\"move\", function (x, y) {",
       "  ${1}",
@@ -1421,7 +1421,7 @@
     "description": " Emitted after window is moved. The callback is called with 2 arguments: `(x, y)` for the new location of the left / top corner of the window."
   },
   "win.on(\"resize\", (width, height) => {})": {
-    "prefix": "win.on(\"resize\", (width, height) => {})",
+    "prefix": "nw.win.on(\"resize\", (width, height) => {})",
     "body": [
       "win.on(\"resize\", function (width, height) {",
       "  ${1}",
@@ -1430,7 +1430,7 @@
     "description": " Emitted after window is resized. The callback is called with 2 arguments: `(width, height)` for the new size of the window."
   },
   "win.on(\"enter-fullscreen\", () => {})": {
-    "prefix": "win.on(\"enter-fullscreen\", () => {})",
+    "prefix": "nw.win.on(\"enter-fullscreen\", () => {})",
     "body": [
       "win.on(\"enter-fullscreen\", function () {",
       "  ${1}",
@@ -1439,7 +1439,7 @@
     "description": " Emitted when window enters fullscreen state."
   },
   "win.on(\"leave-fullscreen\", () => {})": {
-    "prefix": "win.on(\"leave-fullscreen\", () => {})",
+    "prefix": "nw.win.on(\"leave-fullscreen\", () => {})",
     "body": [
       "win.on(\"leave-fullscreen\", function () {",
       "  ${1}",
@@ -1448,7 +1448,7 @@
     "description": " Emitted when window leaves fullscreen state."
   },
   "win.on(\"zoom\", (newZoomLevel) => {})": {
-    "prefix": "win.on(\"zoom\", (newZoomLevel) => {})",
+    "prefix": "nw.win.on(\"zoom\", (newZoomLevel) => {})",
     "body": [
       "win.on(\"zoom\", function (newZoomLevel) {",
       "  ${1}",
@@ -1457,7 +1457,7 @@
     "description": " Emitted when window zooming changed. It has a parameter indicating the new zoom level. See `win.zoom()` method for the parameter’s value definition."
   },
   "win.on(\"capturepagedone\", (data) => {})": {
-    "prefix": "win.on(\"capturepagedone\", (data) => {})",
+    "prefix": "nw.win.on(\"capturepagedone\", (data) => {})",
     "body": [
       "win.on(\"capturepagedone\", function (data) {",
       "  ${1}",
@@ -1466,7 +1466,7 @@
     "description": " Emitted after the capturePage method is called and image data is ready. See `win.capturePage()` callback function for the parameter’s value definition."
   },
   "win.on(\"devtools-opened\", (url) => {})": {
-    "prefix": "win.on(\"devtools-opened\", (url) => {})",
+    "prefix": "nw.win.on(\"devtools-opened\", (url) => {})",
     "body": [
       "win.on(\"devtools-opened\", function (url) {",
       "  ${1}",
@@ -1475,7 +1475,7 @@
     "description": " See `win.showDevTools()` method for more details."
   },
   "win.on(\"devtools-closed\", () => {})": {
-    "prefix": "win.on(\"devtools-closed\", () => {})",
+    "prefix": "nw.win.on(\"devtools-closed\", () => {})",
     "body": [
       "win.on(\"devtools-closed\", function () {",
       "  ${1}",
@@ -1484,7 +1484,7 @@
     "description": " Emitted after Devtools is closed.\n\n See `win.closeDevTools()` method for more details."
   },
   "win.on(\"new-win-policy\", (frame, url, policy) => {})": {
-    "prefix": "win.on(\"new-win-policy\", (frame, url, policy) => {})",
+    "prefix": "nw.win.on(\"new-win-policy\", (frame, url, policy) => {})",
     "body": [
       "win.on(\"new-win-policy\", function (frame, url, policy) {",
       "  // do not open the window",
@@ -1497,7 +1497,7 @@
     "description": " - `frame` `{HTMLIFrameElement}` is the object of the child iframe where the request is from, or `null` if it’s from the top window.\n - `url` `{String}` is the address of the requested link\n - `policy` `{Object}` is an object with the following methods:\n   - `ignore()` : ignore the request, navigation won’t happen.\n   - `forceCurrent()` : force the link to be opened in the same frame\n   - `forceDownload()` : force the link to be a downloadable, or open by external program\n   - `forceNewWindow()` : force the link to be opened in a new window\n   - `forceNewPopup()` : force the link to be opened in a new popup window\n   - `setNewWindowManifest(m)` : control the options for the new popup window. The object `m` is in the same format as the Window subfields in manifest format.\n\n Emitted when a new window is requested from this window or a child iframe. You can call `policy.*` methods in the callback to change the default behavior of opening new windows."
   },
   "win.on(\"navigation\", (frame, url, policy) => {})": {
-    "prefix": "win.on(\"navigation\", (frame, url, policy) => {})",
+    "prefix": "nw.win.on(\"navigation\", (frame, url, policy) => {})",
     "body": [
       "win.on(\"navigation\", function (frame, url, policy) {",
       "  // do not open the window",
