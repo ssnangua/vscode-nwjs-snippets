@@ -8,9 +8,9 @@ This extension contains code snippets for NW.js for Vs Code editor.
 
 In order to install an extension you need to launch the Command Palette (Ctrl + Shift + P or Cmd + Shift + P) and type Extensions. There you have either the option to show the already installed snippets or install new ones. Search for *NW.js snippets* and install it.
 
-## Snippets
+## *.js* Snippets
 
-All snippets are start with `nw`:
+All js snippets are start with `nw`:
 - `nw.`: Official API
 - `nw-`: Some useful code snippets
 
@@ -45,6 +45,44 @@ All snippets are start with `nw`:
 | `nw-relaunchApp` | Relaunch app |
 | `nw-getCurrentScreen` | Get current screen |
 | `nw-hideWindowInsteadOfClose` | Hide window instead of close |
+
+## *.css* Snippets
+
+| Prefix | Snippet Description |
+| ------- | ------- |
+| `nw-draggable` | Draggable regions for frameless window |
+
+## *.html* Snippets
+
+### \<input\>
+
+| Prefix | Content |
+| ------- | ------- |
+| `input[nwdirectory][nwdirectorydesc]` | `<input type="file" nwdirectory nwdirectorydesc="">` |
+| `input[nwsaveas]` | `<input type="file" nwsaveas="">` |
+| `nwworkingdir` | `nwworkingdir` |
+
+### \<iframe\>
+
+| Prefix | Content |
+| ------- | ------- |
+| `nwdisable` | `nwdisable` |
+| `nwfaketop` | `nwfaketop` |
+| `nwUserAgent` | `nwUserAgent=""` |
+
+### \<webview\>
+
+| Prefix | Content |
+| ------- | ------- |
+| `webview` | `<webview id="" src="" style=""></webview>` |
+| `allownw` | `allownw` |
+
+## *.json* Snippets
+
+| Prefix | Snippet Description |
+| ------- | ------- |
+| `nw-package-json` | Insert full manifest fields to package.json |
+| `nw-cmd--*` | For `chromium-args`, includes: `--url`, `--mixed-context`, `--nwapp`, `--user-data-dir`, `--disable-devtools`, `--enable-node-worker`, `--disable-raf-throttling`, `--disable-cookie-encryption`, `--disable-crash-handler=true`, `--enable-gcm`, `--enable-transparent-visuals`, `--disable-transparency`, `--force-cpu-draw` |
 
 ## Note
 

@@ -50,7 +50,7 @@
       "  \"help-zh_CN\": \"https://nwjs-cn.readthedocs.io/zh_CN/latest/References/Manifest%20Format/index.html\"",
       "}"
     ],
-    "description": "Create Package.json"
+    "description": "Insert full manifest fields to package.json"
   },
   "--url": {
     "prefix": "nw-cmd--url",
