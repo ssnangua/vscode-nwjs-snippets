@@ -1,5 +1,5 @@
 {
-  "Create package.json": {
+  "Insert full manifest fields": {
     "prefix": "nw-package-json",
     "body": [
       "{",

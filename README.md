@@ -38,6 +38,7 @@ All js snippets are start with `nw`:
 | `nw-globalHotKey` | Register global hot key |
 | `nw-liveReload` | Live reload current window |
 | `nw-liveReloadApp` | Live reload app |
+| `nw-F5Reload` | Press F5 to reload current window |
 | `nw-openBrowser` | Open default browser |
 | `nw-openFile` | Open file |
 | `nw-openFileManager` | Open file manager |
