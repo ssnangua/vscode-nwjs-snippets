@@ -1,0 +1,14 @@
+{
+  "Draggable regions for frameless window": {
+    "prefix": "nw-draggable",
+    "body": [
+      ".nw-drag-enable {",
+      "  -webkit-app-region: drag;",
+      "}",
+      ".nw-drag-disable {",
+      "  -webkit-app-region: no-drag;",
+      "}"
+    ],
+    "description": " Draggable regions for frameless window"
+  }
+}

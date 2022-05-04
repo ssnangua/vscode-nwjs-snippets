@@ -1,0 +1,1874 @@
+{
+  "nw.App.argv": {
+    "prefix": "nw.App.argv",
+    "body": "nw.App.argv",
+    "description": " Get the filtered command line arguments when starting the app. In NW.js, some command line arguments are used by NW.js, which should not be interested of your app. `App.argv` will filter out those arguments and return the ones left. You can get filtered patterns from `App.filteredArgv` and the full arguments from `App.fullArgv`."
+  },
+  "nw.App.fullArgv": {
+    "prefix": "nw.App.fullArgv",
+    "body": "nw.App.fullArgv",
+    "description": " Get all the command line arguments when starting the app. The return values contains the arguments used by NW.js, such as `--nwapp`, `--remote-debugging-port` etc."
+  },
+  "nw.App.filteredArgv": {
+    "prefix": "nw.App.filteredArgv",
+    "body": "nw.App.filteredArgv",
+    "description": " Get a list of patterns of filtered command line arguments used by `App.argv`. By default, following patterns are used to filter the arguments:\n ```\n [\n   /^--url=/,\n   /^--remote-debugging-port=/,\n   /^--renderer-cmd-prefix=/,\n   /^--nwapp=/\n ]\n ```"
+  },
+  "nw.App.startPath": {
+    "prefix": "nw.App.startPath",
+    "body": "nw.App.startPath",
+    "description": " Get the directory where the application starts. The application will change the current directory to where the package files reside after start."
+  },
+  "nw.App.dataPath": {
+    "prefix": "nw.App.dataPath",
+    "body": "nw.App.dataPath",
+    "description": " Get the application’s data path in user’s directory.\n - Windows: `%LOCALAPPDATA%/<name>`\n - Linux: `~/.config/<name>`\n - OS X: `~/Library/Application Support/<name>/Default` (was `~/Library/Application Support/<name>` in v0.12.3 and below)\n `<name>` is the name field in the `package.json` manifest."
+  },
+  "nw.App.manifest": {
+    "prefix": "nw.App.manifest",
+    "body": "nw.App.manifest",
+    "description": " Get the JSON object of the manifest file."
+  },
+  "nw.App.clearCache()": {
+    "prefix": "nw.App.clearCache()",
+    "body": "nw.App.clearCache()",
+    "description": " Clear the HTTP cache in memory and the one on disk. This method call is synchronized."
+  },
+  "nw.App.clearAppCache(manifest_url)": {
+    "prefix": "nw.App.clearAppCache(manifest_url)",
+    "body": "nw.App.clearAppCache(\"${1:manifest_url}\")",
+    "description": " Mark the Application cache group specified by manifest_url obsolete. This method call is synchronized."
+  },
+  "nw.App.closeAllWindows()": {
+    "prefix": "nw.App.closeAllWindows()",
+    "body": "nw.App.closeAllWindows()",
+    "description": " Send the `close` event to all windows of current app, if no window is blocking the `close` event, then the app will quit after all windows have done shutdown. Use this method to quit an app will give windows a chance to save data."
+  },
+  "nw.App.crashBrowser()": {
+    "prefix": "nw.App.crashBrowser()",
+    "body": "nw.App.crashBrowser()",
+    "description": " This function crashes the browser process and the renderer process respectively, to test the [Crash dump](https://nwjs.readthedocs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature."
+  },
+  "nw.App.crashRenderer()": {
+    "prefix": "nw.App.crashRenderer()",
+    "body": "nw.App.crashRenderer()",
+    "description": " This function crashes the browser process and the renderer process respectively, to test the [Crash dump](https://nwjs.readthedocs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature."
+  },
+  "nw.App.enableComponent(component, callback)": {
+    "prefix": "nw.App.enableComponent(component, callback)",
+    "body": "nw.App.enableComponent(\"${1:component}\", (version) => {\n  ${2}\n}})",
+    "description": " **This API is experimental and subject to change.**\n - `component` `{String}` ID of component; currently only `WIDEVINE` is supported.\n - `callback` `function(version)` callback after the component is enabled; `version` string parameter is the version of the enabled component. ‘0.0.0.0’ means it’s not installed. Use `App.updateComponent()` to install it."
+  },
+  "nw.App.getProxyForURL(url)": {
+    "prefix": "nw.App.getProxyForURL(url)",
+    "body": "nw.App.getProxyForURL(\"${1:url}\")",
+    "description": " - `url` `{String}` the URL to query for proxy\n Query the proxy to be used for loading `url` in DOM. The return value is in the same format used in [PAC](http://en.wikipedia.org/wiki/Proxy_auto-config) (e.g. “DIRECT”, “PROXY localhost:8080”)."
+  },
+  "nw.App.setProxyConfig(config, pac_url)": {
+    "prefix": "nw.App.setProxyConfig(config, pac_url)",
+    "body": "nw.App.setProxyConfig(\"${1:config}\", \"${2:pac_url}\")",
+    "description": " - `config` `{String}` Proxy rules\n - `pac_url` `{String}` PAC url\nSet the proxy config which the web engine will be used to request network resources or PAC url to detect proxy automatically."
+  },
+  "nw.App.quit()": {
+    "prefix": "nw.App.quit()",
+    "body": "nw.App.quit()",
+    "description": " Quit current app. This method will not send `close` event to windows and app will just quit quietly."
+  },
+  "nw.App.addOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)": {
+    "prefix": "nw.App.addOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)",
+    "body": "nw.App.addOriginAccessWhitelistEntry(\"${1:sourceOrigin}\", \"${2:destinationProtocol}\", \"${3:destinationHost}\", ${4|true,false|})",
+    "description": " - `sourceOrigin` `{String}` The source origin. e.g. `http://github.com/`\n - `destinationProtocol` `{String}` The destination protocol where the `sourceOrigin` can access to. e.g. `app`\n - `destinationHost` `{String}` The destination host where the `sourceOrigin` can access to. e.g. `myapp`\n - `allowDestinationSubdomains` `{Boolean}` If set to true, the `sourceOrigin` is allowed to access subdomains of destinations.\n Add an entry to the whitelist used for controlling cross-origin access. Suppose you want to allow HTTP redirecting from github.com to the page of your app, use something like this:\n ```js\n App.addOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);\n ```\n Use `App.removeOriginAccessWhitelistEntry` with exactly the same arguments to do the contrary."
+  },
+  "nw.App.removeOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)": {
+    "prefix": "nw.App.removeOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)",
+    "body": "nw.App.removeOriginAccessWhitelistEntry(\"${1:sourceOrigin}\", \"${2:destinationProtocol}\", \"${3:destinationHost}\", ${4|true,false|})",
+    "description": " - `sourceOrigin` `{String}` The source origin. e.g. `http://github.com/`\n - `destinationProtocol` `{String}` The destination protocol where the `sourceOrigin` can access to. e.g. `app`\n - `destinationHost` `{String}` The destination host where the `sourceOrigin` can access to. e.g. `myapp`\n - `allowDestinationSubdomains` `{Boolean}` If set to true, the `sourceOrigin` is allowed to access subdomains of destinations.\n Remove an entry from the whitelist used for controlling cross-origin access. See `addOriginAccessWhitelistEntry` above."
+  },
+  "nw.App.registerGlobalHotKey(shortcut)": {
+    "prefix": "nw.App.registerGlobalHotKey(shortcut)",
+    "body": "nw.App.registerGlobalHotKey(${1:shortcut});",
+    "description": " `shortcut` `{Shortcut}` the `Shortcut` object to register.\n Register a global keyboard shortcut (also known as system-wide hot key) to the system.\n See [Shortcut](https://nwjs.readthedocs.io/en/latest/References/Shortcut/) for more information."
+  },
+  "nw.App.unregisterGlobalHotKey(shortcut)": {
+    "prefix": "nw.App.unregisterGlobalHotKey(shortcut)",
+    "body": "nw.App.unregisterGlobalHotKey(${1:shortcut});",
+    "description": " `shortcut` `{Shortcut}` the `Shortcut` object to unregister.\n Unregisters a global keyboard shortcut.\n See [Shortcut](https://nwjs.readthedocs.io/en/latest/References/Shortcut/) for more information."
+  },
+  "nw.App.updateComponent(component, callback)": {
+    "prefix": "nw.App.updateComponent(component, callback)",
+    "body": [
+      "nw.App.updateComponent(\"${1:component}\", success => {",
+      "  ${2:console.log(success);}",
+      "});"
+    ],
+    "description": " **This API is experimental and subject to change.**\n -`component` `{String}` ID of component; currently only `WIDEVINE` is supported.\n - `callback` `function(success)` callback after the component is updated; `success` is a boolean parameter for the update result."
+  },
+  "nw.App.on(\"open\", args => {})": {
+    "prefix": "nw.App.on(\"open\", args => {})",
+    "body": [
+      "nw.App.on(\"open\", args => {",
+      "  ${1:console.log(args);}",
+      "});"
+    ],
+    "description": " - `args` `{String}` the full command line of the program.\n Emitted when users opened a file with your app."
+  },
+  "nw.App.on(\"reopen\", () => {})": {
+    "prefix": "nw.App.on(\"reopen\", () => {})",
+    "body": [
+      "nw.App.on(\"reopen\", () => {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " This is a Mac specific feature. This event is sent when the user clicks the dock icon for an already running application."
+  },
+  "process.versions.nw": {
+    "prefix": "process.versions.nw",
+    "body": "process.versions.nw",
+    "description": " NW.js's version."
+  },
+  "process.versions['nw-flavor']": {
+    "prefix": "process.versions['nw-flavor']",
+    "body": "process.versions['nw-flavor']",
+    "description": " `sdk` when the binary is SDK build, or `normal` when the binary is normal build."
+  },
+  "process.mainModule": {
+    "prefix": "process.mainModule",
+    "body": "process.mainModule",
+    "description": " `process.mainModule` is set for the start page (such as `index.html`) as specified in the manifest’s `main` field. However, when the `node-main` field is also specified in the manifest, `process.mainModule` points to the file specified in the `node-main` field."
+  },
+  "nw.Clipboard.get()": {
+    "prefix": "nw.Clipboard.get()",
+    "body": "const clipboard = nw.Clipboard.get();",
+    "description": " Returns `{Clipboard}` the clipboard object.\n **The Selection Clipboard in X11 is not supported.**"
+  },
+  "nw.Clipboard.get().set(data, [type, [row]])": {
+    "prefix": "nw.Clipboard.get().set(data, [type, [row]])",
+    "body": [
+      "const clipboard = nw.Clipboard.get();",
+      "clipboard.set(\"${1:data}\", \"${2|text,png,jpeg,html,rtf|}\", ${3|false,true|});"
+    ],
+    "description": " - `data` `{String}` the data to write to the clipboard\n - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`. By default, `raw` is set to `false`.\n\n Write `data` of `type` to the clipboard. This method will clear the clipboard and replace with the given `data`. Hence another call to this method will overwrite with the new one. To write multiple types of data to clipboard simultaneously, you will need to use clipboard.set(clipboardDataList) below.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "nw.Clipboard.get().get([type, [raw]])": {
+    "prefix": "nw.Clipboard.get().get([type, [raw]])",
+    "body": [
+      "const clipboard = nw.Clipboard.get();",
+      "clipboard.get(\"${2|text,png,jpeg,html,rtf|}\", ${3|false,true|});"
+    ],
+    "description": " - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`.\n - Returns `{String}` the data retrieved from the clipboard\n Get the data of `type` from clipboard.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.set(data, [type, [row]])": {
+    "prefix": "nw.clipboard.set(data, [type, [row]])",
+    "body": "clipboard.set(\"${1:data}\", \"${2|text,png,jpeg,html,rtf|}\", ${3|false,true|});",
+    "description": " Use after `nw.Clipboard.get()`.\n\n - `data` `{String}` the data to write to the clipboard\n - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`. By default, `raw` is set to `false`.\n\n Write `data` of `type` to the clipboard. This method will clear the clipboard and replace with the given `data`. Hence another call to this method will overwrite with the new one. To write multiple types of data to clipboard simultaneously, you will need to use clipboard.set(clipboardDataList) below.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.set({ data, type, raw })": {
+    "prefix": "nw.clipboard.set(clipboardData)",
+    "body": [
+      "clipboard.set({",
+      "  data: \"${1:data}\",",
+      "  type: \"${2|text,png,jpeg,html,rtf|}\",",
+      "  raw: ${3|false,true|}",
+      "});"
+    ],
+    "description": " Use after `nw.Clipboard.get()`.\n\n `clipboardData` `{Object}` JSON object containing `data`, `type` and `raw` to be written to clipboard.\n - `data` `{String}` the data to write to the clipboard\n - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`. By default, `raw` is set to `false`.\n\n Write `data` of `type` to the clipboard. This method will clear the clipboard and replace with the given `data`. Hence another call to this method will overwrite with the new one. To write multiple types of data to clipboard simultaneously, you will need to use clipboard.set(clipboardDataList) below.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.set(clipboardDataList)": {
+    "prefix": "nw.clipboard.set(clipboardDataList)",
+    "body": [
+      "clipboard.set([",
+      "  {",
+      "    data: \"${1:data}\",",
+      "    type: \"${2|text,png,jpeg,html,rtf|}\",",
+      "    raw: ${3|false,true|}",
+      "  },",
+      "]);"
+    ],
+    "description": " Use after `nw.Clipboard.get()`.\n\n `clipboardDataList` `{Array}` Array of `clipboardData` to be written to clipboard.\n Multiple types of data can be written to clipboard simultaneously with this method.\n - `data` `{String}` the data to write to the clipboard\n - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`. By default, `raw` is set to `false`.\n\n Write `data` of `type` to the clipboard. This method will clear the clipboard and replace with the given `data`. Hence another call to this method will overwrite with the new one. To write multiple types of data to clipboard simultaneously, you will need to use clipboard.set(clipboardDataList) below.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.get([type, [raw]])": {
+    "prefix": "nw.clipboard.get([type, [raw]])",
+    "body": "clipboard.get(\"${2|text,png,jpeg,html,rtf|}\", ${3|false,true|});",
+    "description": " Use after `nw.Clipboard.get()`.\n\n - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`.\n - Returns `{String}` the data retrieved from the clipboard\n Get the data of `type` from clipboard.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.get({ type, raw })": {
+    "prefix": "nw.clipboard.get(clipboardData)",
+    "body": [
+      "clipboard.get({",
+      "  type: \"${2|text,png,jpeg,html,rtf|}\",",
+      "  raw: ${3|false,true|}",
+      "});"
+    ],
+    "description": " Use after `nw.Clipboard.get()`.\n\n - `clipboardData` `{Object}` JSON object containing `type` and `raw` argument for reading data from clipboard.\n   - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n   - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`.\n - Returns `{String}` the data retrieved from the clipboard.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.get(clipboardDataList)": {
+    "prefix": "nw.clipboard.get(clipboardDataList)",
+    "body": [
+      "clipboard.get([",
+      "  {",
+      "    type: \"${2|text,png,jpeg,html,rtf|}\",",
+      "    raw: ${3|false,true|}",
+      "  },",
+      "]);"
+    ],
+    "description": " Use after `nw.Clipboard.get()`.\n\n - `clipboardDataList` `{Array}` Array of `clipboardData` for reading data from clipboard. Multiple types of data can be read from clipboard simultaneously with this method.\n   - `type` `{String}` Optional the type of the data. Support `text`, `png`, `jpeg`, `html` and `rtf`. By default, `type` is set to `text`.\n   - `raw` `{Boolean}` Optional requiring raw image data. This option is only valid if type is `png` or `jpeg`.\n - Returns `{Array}` array of `clipboardData` retrieved from the clipboard. Each item contains `type`, `data` and `raw` (optional) attributes.\n\n **Format of Image**\n Images read or written from clipboard can be either JPEG or PNG. When `raw` is not set or set to `false`, the data is expected to be a valid data URI encoded with Base64. When `raw` is set to `true`, the data is only the Base64 encoded image data not including the `data:<mime-type>;base64`, part."
+  },
+  "clipboard.readAvailableTypes()": {
+    "prefix": "nw.clipboard.readAvailableTypes()",
+    "body": "clipboard.readAvailableTypes();",
+    "description": " Use after `nw.Clipboard.get()`.\n\n Returns `{Array}` list of available types of data in clipboard currently. Each item is one of following types:\n - `text`: plain text. Can be read by clip.get('text').\n - `html`: HTML text. Can be read by clip.get('html').\n - `rtf`: RTF (Rich Text Format). Can be read by clip.get('rtf').\n - `png`: PNG image. Can be read by clip.get('png').\n - `jpeg`: JPEG image. Can be read by clip.get('jpeg').\n You can use the returned list as a suggestion to get the right data from clipboard."
+  },
+  "clipboard.clear()": {
+    "prefix": "nw.clipboard.clear()",
+    "body": "clipboard.clear();",
+    "description": " Use after `nw.Clipboard.get()`.\n\n Clear the clipboard."
+  },
+  "new nw.Menu(option)": {
+    "prefix": "nw.Menu(option)",
+    "body": "const menu = new nw.Menu({ type: \"${1|contextmenu,menubar|}\" });",
+    "description": " Create a `Menu` object.\n\n - `option` `{Object}` Optional\n   - `type` `{String}` Optional two types are accepted by this method: `menubar` or `contextmenu`. The value is set to `contextmenu` by default."
+  },
+  "menu.items": {
+    "prefix": "nw.menu.items",
+    "body": "menu.items",
+    "description": " Get an array that contains all items of a menu. Each item is an instance of `MenuItem`. See [MenuItem](https://nwjs.readthedocs.io/en/latest/References/MenuItem/) for detailed information."
+  },
+  "menu.append(item)": {
+    "prefix": "nw.menu.append(item)",
+    "body": "menu.append(${1:item});",
+    "description": " - `item` `{MenuItem}` the item to be appended to the tail of the menu\n Append `item` to the tail of the menu."
+  },
+  "menu.insert(item, i)": {
+    "prefix": "nw.menu.insert(item, i)",
+    "body": "menu.insert(${1:item}, ${2:0});",
+    "description": " - `item` `{MenuItem}` the item to be inserted into the menu\n - `i` `{Integer}` the index in the menu list to insert the the item\n Insert the `item` at `i` th position of the menu. The index is started from 0."
+  },
+  "menu.remove(item)": {
+    "prefix": "nw.menu.remove(item)",
+    "body": "menu.remove(${1:item});",
+    "description": " - `item` `{MenuItem}` the item to be removed\n Remove `item` from the menu. This method requires you to keep the `MenuItem` outside the `Menu`."
+  },
+  "menu.removeAt(i)": {
+    "prefix": "nw.menu.removeAt(i)",
+    "body": "menu.removeAt(${1:0});",
+    "description": " - `i` `{Integer}` the index of the item to be removed from the menu\n Remove the `i` th item form the menu."
+  },
+  "menu.popup(x, y)": {
+    "prefix": "nw.menu.popup(x, y)",
+    "body": "menu.popup(${1:0}, ${2:0});",
+    "description": " - `x` `{Integer}` the x position of the anchor\n - `y` `{Integer}` the y position of the anchor\n Popup the context menu at the anchor in (`x`, `y`) in current window. This method is only valid for `contextmenu` type."
+  },
+  "menu.createMacBuiltin(appname, [options])": {
+    "prefix": "nw.menu.createMacBuiltin(appname, [options])",
+    "body": [
+      "menu.createMacBuiltin(\"${1:appname}\", {",
+      "  hideEdit: ${2|false,true|},",
+      "  hideWindow: ${3|false,true|},",
+      "});"
+    ],
+    "description": "**Mac Only.**\n - `appname` `{String}` The application name\n - `options` `{Object}` Optional\n   - `hideEdit` `{Boolean}` Optional do not populate the Edit menu\n   - `hideWindow` `{Boolean}` Optional do not populate the Window menu\n\n Creates the builtin menus (App, Edit and Window) within the menubar on Mac. The items can be manipulated with the `items` property. The argument `appname` is used for the title of App menu.\n\n You can still use builtin menus with other menu items. i.e. append or insert items to the menu is still valid.\n\n See also [Customize Menubar](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/#mac-os-x) for detailed usage."
+  },
+  "new nw.MenuItem(option)": {
+    "prefix": "nw.MenuItem(option)",
+    "body": [
+      "const menuItem = new nw.MenuItem({",
+      "  label: \"${1:Item Full Fields}\",",
+      "  type: \"${2|normal,checkbox,separator|}\",",
+      "  icon: \"${3:img/icon.png}\",",
+      "  tooltip: \"${4}\",",
+      "  enabled: ${5|true,false|},",
+      "  checked: ${6|false,true|},",
+      "  key: \"${7:z}\",",
+      "  modifiers: \"${8:ctrl+alt}\",",
+      "  click() {",
+      "    ${9:console.log(\"Item Full Fields click callback\");}",
+      "  },",
+      "});"
+    ],
+    "description": " - `option` `{Object}` an object contains initial settings for the `MenuItem`\n   - `label` `{String}` Optional label for normal item or checkbox\n   - `icon` `{String}` Optional icon for normal item or checkbox\n   - `tooltip` `{String}` Optional tooltip for normal item or checkbox\n   - `type` `{String}` Optional the type of the item. Three types are accepted: `normal`, `checkbox`, `separator`\n   - `click` `{Function}` Optional the callback function when item is triggered by mouse click or keyboard shortcut\n   - `enabled` `{Boolean}` Optional whether the item is enabled or disabled. It’s set to `true` by default.\n   - `checked` `{Boolean}` Optional whether the checkbox is checked or not. It’s set to `false` by default.\n   - `submenu` `{Menu}` Optional a submenu\n   - `key` `{String}` Optional the key of the shortcut\n   - `modifiers` `{String}` Optional the modifiers of the shortcut\n\n Every field has its own property in the `MenuItem`, see documentation of each property for details.\n\n `MenuItem` is inherited from `EventEmitter`. You can use `on` to listen to the events."
+  },
+  "menuItem.type": {
+    "prefix": "nw.menuItem.type",
+    "body": "menuItem.type",
+    "description": " Get the `type` of a `MenuItem`, it can be `separator`, `checkbox` and `normal`.\n **The type can be set only when you create it. It cannot be changed at runtime.**"
+  },
+  "menuItem.label": {
+    "prefix": "nw.menuItem.label",
+    "body": "menuItem.label",
+    "description": " Get or set the `label` of a `MenuItem`, it can only be plain text for now."
+  },
+  "menuItem.icon": {
+    "prefix": "nw.menuItem.icon",
+    "body": "menuItem.icon",
+    "description": " Get or set the `icon` of a `MenuItem`, it must a path to your icon file. It can be a relative path which points to an icon in your app, or an absolute path pointing to a file in user’s system.\n It has no effect on setting `icon` of a `separator` item."
+  },
+  "menuItem.iconIsTemplate": {
+    "prefix": "nw.menuItem.iconIsTemplate",
+    "body": "menuItem.iconIsTemplate",
+    "description": "**Mac Only.**\n Get or set whether `icon` image is treated as “template” (`true` by default). When the property is set to `true` the image is treated as “template” and the system automatically ensures proper styling according to the various states of the status item (e.g. dark menu, light menu, etc.). Template images should consist only of black and clear colours and can use the alpha channel in the image to adjust the opacity of black content. It has no effects on Linux and Windows."
+  },
+  "menuItem.tooltip": {
+    "prefix": "nw.menuItem.tooltip",
+    "body": "menuItem.tooltip",
+    "description": "**Mac Only.**\n Get or set the `tooltip` of a `MenuItem`, it can only be plain text. A `tooltip` is short string that describes the menu item, it will show when you hover your mouse on the item."
+  },
+  "menuItem.checked": {
+    "prefix": "nw.menuItem.checked",
+    "body": "menuItem.checked",
+    "description": " Get or set whether the `MenuItem` is `checked`. Usually if a `MenuItem` is checked. There will be a mark on the left side of it. It’s used mostly to indicate whether an option is on."
+  },
+  "menuItem.enabled": {
+    "prefix": "nw.menuItem.enabled",
+    "body": "menuItem.enabled",
+    "description": " Get or set whether the `MenuItem` is `enabled`. An disabled `MenuItem` will be greyed out and you will not be able to click on it."
+  },
+  "menuItem.submenu": {
+    "prefix": "nw.menuItem.submenu",
+    "body": "menuItem.submenu",
+    "description": " Get or set the `submenu` of a `MenuItem`, the `submenu` must be a `Menu` object. You should set `submenu` in the `option` when creating the `MenuItem`. Changing it at runtime is slow on some platforms."
+  },
+  "menuItem.click": {
+    "prefix": "nw.menuItem.click",
+    "body": "menuItem.click",
+    "description": " Get or set the `click` callback of a `MenuItem`, the `click` must be a valid function. It will be called when users activate the item."
+  },
+  "menuItem.key": {
+    "prefix": "nw.menuItem.key",
+    "body": "menuItem.key",
+    "description": " A single character string to specify the shortcut key for the menu item.\n\n Valid Keys for All Platforms\n - Alphabet: a-z\n - Digits: 0-9\n - Other keys on main area: []',./`-=\\';Tab\n - Esc\n - Down, Up, Left, Right\n - [W3C DOM Level 3 KeyboardEvent Key Values](http://www.w3.org/TR/DOM-Level-3-Events-key/): `KeyA` (same as `A`), `Escape` (same as `Esc`), `F1`, `ArrowDown` (same as `Down`) etc.\n\n Special Keys for Mac Only\n On Mac, you can also use special keys as shortcut key with String.fromCharCode(specialKey). Here are some useful keys:\n - 28: Left (←)\n - 29: Right (→)\n - 30: Up (↑)\n - 31: Down (↓)\n - 27: Escape (⎋)\n - 11: PageUp (⇞)\n - 12: PageDown (⇟)\n\n For full list of special keys supported on Mac, see [NSMenuItem.keyEquivalent and NSEvent: Function-Key Unicodes](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSMenuItem_Class/#//apple_ref/occ/instp/NSMenuItem/keyEquivalent)."
+  },
+  "menuItem.modifiers": {
+    "prefix": "nw.menuItem.modifiers",
+    "body": "menuItem.modifiers",
+    "description": " A string to specify the modifier keys for the shortcut of the menu item. It should be the concatenation of the following strings: `cmd` / `command` / `super`, `shift`, `ctrl`, `alt`. e.g. `cmd+shift+alt`.\n `cmd` represents different keys on all platforms: Windows key (Windows) on Windows and Linux, Apple key (⌘) on Mac. `super` and `command` are aliases of `cmd`."
+  },
+  "menuItem.on(\"click\", () => {})": {
+    "prefix": "nw.menuItem.on(\"click\", () => {})",
+    "body": [
+      "menuItem.on(\"click\", () => {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when user activates the menu item."
+  },
+  "nw.Screen.Init()": {
+    "prefix": "nw.Screen.Init()",
+    "body": "nw.Screen.Init()",
+    "description": " Init the Screen singleton object, you only need to call this once"
+  },
+  "nw.Screen.screens": {
+    "prefix": "nw.Screen.screens",
+    "body": "nw.Screen.screens",
+    "description": " Get the array of screen (number of screen connected to the computer)\n\n screen has following structure:\n screen {\n   // unique id for a screen\n   id: int,\n\n   // physical screen resolution, can be negative, not necessarily start from 0,depending on screen arrangement\n   bounds: {\n     x: int,\n     y: int,\n     width: int,\n     height: int\n   },\n\n   // useable area within the screen bound\n   work_area: {\n     x: int,\n     y: int,\n     width: int,\n     height: int\n   },\n\n   scaleFactor: float,\n   isBuiltIn: bool,\n   rotation: int,\n   touchSupport: int\n }"
+  },
+  "nw.Screen.chooseDesktopMedia(sources, streamId => {})": {
+    "prefix": "nw.Screen.chooseDesktopMedia(sources, streamId => {})",
+    "body": [
+      "nw.Screen.Init(); // you only need to call this once",
+      "nw.Screen.chooseDesktopMedia([\"window\", \"screen\"], (streamId) => {",
+      "  const vidConstraint = {",
+      "    mandatory: {",
+      "      chromeMediaSource: \"desktop\",",
+      "      chromeMediaSourceId: streamId,",
+      "      maxWidth: 1920,",
+      "      maxHeight: 1080,",
+      "    },",
+      "    optional: [],",
+      "  };",
+      "  navigator.webkitGetUserMedia(",
+      "    { audio: false, video: vidConstraint },",
+      "    // success_func",
+      "    (stream) => {",
+      "      const video = document.querySelector(\"video\");",
+      "      video.srcObject = stream;",
+      "      video.onloadedmetadata = () => {",
+      "        video.play();",
+      "      };",
+      "    },",
+      "    // fallback_func",
+      "    (err) => {",
+      "      console.log(\"The following error occurred: \" + err.name);",
+      "    }",
+      "  );",
+      "});"
+    ],
+    "description": " - `sources` `{String[]}` array of source types. Two types are supported by this API: `screen` and `window`.\n - `callback` `{Function}` callback function with chosed streamId. streamId will be `false` if failed to execute or existing session is alive.\n\n **Screen sharing by selection; Currently only working in Windows and OSX and some linux distribution.**"
+  },
+  "nw.Screen.on(\"displayBoundsChanged\", screen => {})": {
+    "prefix": "nw.Screen.on(\"displayBoundsChanged\", screen => {})",
+    "body": [
+      "nw.Screen.on(\"displayBoundsChanged\", screen => {",
+      "  ${1:console.log(screen);}",
+      "});"
+    ],
+    "description": " Emitted when the screen resolution, arrangement is changed, the callback is called with 1 argument `screen`. See [Screen.screens](https://nwjs.readthedocs.io/en/latest/References/Screen/#screenscreens) for the format."
+  },
+  "nw.Screen.on(\"displayAdded\", screen => {})": {
+    "prefix": "nw.Screen.on(\"displayAdded\", screen => {})",
+    "body": [
+      "nw.Screen.on(\"displayAdded\", screen => {",
+      "  ${1:console.log(screen);}",
+      "});"
+    ],
+    "description": " Emitted when a new screen added, the callback is called with 1 argument `screen`. See [Screen.screens](https://nwjs.readthedocs.io/en/latest/References/Screen/#screenscreens) for the format."
+  },
+  "nw.Screen.on(\"displayRemoved\", screen => {})": {
+    "prefix": "nw.Screen.on(\"displayRemoved\", screen => {})",
+    "body": [
+      "nw.Screen.on(\"displayRemoved\", screen => {",
+      "  ${1:console.log(screen);}",
+      "});"
+    ],
+    "description": " Emitted when existing screen removed, the callback is called with 1 argument `screen`. See [Screen.screens](https://nwjs.readthedocs.io/en/latest/References/Screen/#screenscreens) for the format."
+  },
+  "nw.Screen.DesktopCaptureMonitor": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor",
+    "body": [
+      "const dcm = nw.Screen.DesktopCaptureMonitor;",
+      "nw.Screen.Init();",
+      "dcm.on(\"added\", function (id, name, order, type) {",
+      "  //select first stream and shutdown",
+      "  const constraints = {",
+      "    audio: {",
+      "      mandatory: {",
+      "        chromeMediaSource: \"system\",",
+      "        chromeMediaSourceId: dcm.registerStream(id),",
+      "      },",
+      "    },",
+      "    video: {",
+      "      mandatory: {",
+      "        chromeMediaSource: \"desktop\",",
+      "        chromeMediaSourceId: dcm.registerStream(id),",
+      "      },",
+      "    },",
+      "  };",
+      "",
+      "  // TODO: call getUserMedia with contraints",
+      "",
+      "  dcm.stop();",
+      "});",
+      "dcm.on(\"removed\", (id) => {});",
+      "dcm.on(\"orderchanged\", (id, new_order, old_order) => {});",
+      "dcm.on(\"namechanged\", (id, name) => {});",
+      "dcm.on(\"thumbnailchanged\", (id, thumbnail) => {});",
+      "dcm.start(true, true);"
+    ],
+    "description": " This API behaves similar functions as `Screen.chooseDesktopMedia`. But it doesn’t have GUI. You can use this API to monitor the changes of screens and windows on desktop and implement your own UI.\n\n `Screen.DesktopCaptureMonitor` is an instance of `EventEmitter`. You can use `Screen.DesktopCaptureMonitor.on()` to listen to the events."
+  },
+  "nw.Screen.DesktopCaptureMonitor.started": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.started",
+    "body": "nw.Screen.DesktopCaptureMonitor.started",
+    "description": " Boolean of whether the DesktopCaptureMonitor is started."
+  },
+  "nw.Screen.DesktopCaptureMonitor.start(should_include_screens, should_include_windows)": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.start(should_include_screens, should_include_windows)",
+    "body": "nw.Screen.DesktopCaptureMonitor.start(${1|true,false|}, ${2|true,false|});",
+    "description": " - `should_include_screens` `{Boolean}` whether should include screens\n - `should_include_windows` `{Boolean}` whether should include windows\n The `DesktopCaptureMonitor` will start monitoring the system and trigger the the events. The screen may flicker if while `DesktopCaptureMonitor` is running."
+  },
+  "nw.Screen.DesktopCaptureMonitor.stop()": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.stop()",
+    "body": "nw.Screen.DesktopCaptureMonitor.stop();",
+    "description": " The `DesktopCaptureMonitor` will stop monitoring the system. `DesktopCaptureMonitor` should be stopped after a stream is selected."
+  },
+  "nw.Screen.DesktopCaptureMonitor.registerStream(id)": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.registerStream(id)",
+    "body": "nw.Screen.DesktopCaptureMonitor.registerStream(${1:id});",
+    "description": " Register and return a valid stream id passed into `chromeMediaSourceId` in `getUserMedia` constraints."
+  },
+  "nw.Screen.DesktopCaptureMonitor.on(\"added\", (id, name, order, type, primary) => {})": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.on(\"added\", (id, name, order, type, primary) => {})",
+    "body": [
+      "nw.Screen.DesktopCaptureMonitor.on(",
+      "  \"added\",",
+      "  (id, name, order, type, primary) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - `id` `{String}` is the media id. Use `registerStream(id)` to obtain a valid stream id used with getUserMedia(). See [registerStream](https://nwjs.readthedocs.io/en/latest/References/Screen/#screendesktopcapturemonitorregisterstreamid)\n - `name` `{String`} is the title of the window or screen\n - `order` `{Integer}` is the z-order of the windows, if screens are selected they will appear first\n - `type` `{String}` type of the stream: `screen`, `window`, `other` or `unknown`\n - `primary` `{Boolean}` Windows OS only this will be `true` if the source is the primary monitor\n Emit when a new source was added."
+  },
+  "nw.Screen.DesktopCaptureMonitor.on(\"removed\", (order) => {})": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.on(\"removed\", (order) => {})",
+    "body": [
+      "nw.Screen.DesktopCaptureMonitor.on(",
+      "  \"removed\",",
+      "  (order) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - `order` `{Integer}` is the order of the media source that is no longer capturable\n Emit when a source was removed."
+  },
+  "nw.Screen.DesktopCaptureMonitor.on(\"orderchanged\", (id, new_order, old_order) => {})": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.on(\"orderchanged\", (id, new_order, old_order) => {})",
+    "body": [
+      "nw.Screen.DesktopCaptureMonitor.on(",
+      "  \"orderchanged\",",
+      "  (id, new_order, old_order) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - `id` `{String}` is the media id of the screen or window that has changed z-order\n - `new_order` `{Integer}` is the new z-order\n - `old_order` `{Integer}` is the old z-order\n Emit when the Z-order of a source changed (this may change for windows as others are focused)."
+  },
+  "nw.Screen.DesktopCaptureMonitor.on(\"namechanged\", (id, name) => {})": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.on(\"namechanged\", (id, name) => {})",
+    "body": [
+      "nw.Screen.DesktopCaptureMonitor.on(",
+      "  \"namechanged\",",
+      "  (id, name) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - `id` `{String}` is the media id of the screen or window that has a name changed\n - `name` `{String}` is the new name of the screen or window\n Emit when the name of the source has changed. This can happen when a window changes title."
+  },
+  "nw.Screen.DesktopCaptureMonitor.on(\"thumbnailchanged\", (id, thumbnail) => {})": {
+    "prefix": "nw.Screen.DesktopCaptureMonitor.on(\"thumbnailchanged\", (id, thumbnail) => {})",
+    "body": [
+      "nw.Screen.DesktopCaptureMonitor.on(",
+      "  \"thumbnailchanged\",",
+      "  (id, thumbnail) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - `id` `{String}` is the media id of the screen or window that has an updated thumbnail\n - `thumbnail` `{String}` is the base64 encoded png of the thumbnail\n Emit when the thumbnail of a source changed."
+  },
+  "nw.Shell.openExternal(uri)": {
+    "prefix": "nw.Shell.openExternal(uri)",
+    "body": "nw.Shell.openExternal(\"${1:https://github.com/nwjs/nw.js}\");",
+    "description": " - `uri` `{String}` A URL to open in system default manner.\n Open the given external URI in the desktop’s default manner. For example, mailto: URLs in the default mail user agent."
+  },
+  "nw.Shell.openItem(file_path)": {
+    "prefix": "nw.Shell.openItem(file_path)",
+    "body": "nw.Shell.openItem(\"${1:test.txt}\");",
+    "description": " - `file_path` `{String}` path to a local file\n Open the given `file_path` in the desktop’s default manner."
+  },
+  "nw.Shell.showItemInFolder(file_path)": {
+    "prefix": "nw.Shell.showItemInFolder(file_path)",
+    "body": "nw.Shell.showItemInFolder(\"${1:test.txt}\");",
+    "description": " - `file_path` `{String}` path to a local file\n Show the given `file_path` in the parent folder with file manager. If possible, select the file."
+  },
+  "new nw.Shortcut(option)": {
+    "prefix": "nw.Shortcut(option)",
+    "body": [
+      "const shortcut = new nw.Shortcut({",
+      "  key: \"${1:Ctrl+Shift+A}\",",
+      "  // The active callback of a Shortcut. It will be called when user presses the shortcut.",
+      "  active: function() {",
+      "    ${2:console.log(`Global desktop keyboard shortcut: ${this.key} active.`);}",
+      "  },",
+      "  // The failed callback of a Shortcut. It will be called when application passes an invalid key , or failed to register the key.",
+      "  failed: function(msg) {",
+      "    ${3:console.log(`:(, fail to register or couldn't parse the key ${this.key}.`, msg);}",
+      "  },",
+      "});"
+    ],
+    "description": " - `option` `{Object}`\n   - `key` `{String}` key combinations of the shortcut, such as `ctrl+shift+a`. See shortcut.key property for details.\n   - `active` `{Function}` Optional a callback when the hotkey is triggered. See shortcut.active property for details.\n   - `failed` `{Function}` Optional a callback when failed to register the hotkey. See shortcut.failed property for details.\n Create new `Shortcut`, `option` is an object contains initial settings for the `Shortcut`."
+  },
+  "shortcut.key": {
+    "prefix": "nw.shortcut.key",
+    "body": "shortcut.key",
+    "description": " Get the `key` of a `Shortcut`. It is a string to specify the shortcut key, like `Ctrl+Alt+A`. The key is consisted of zero or more modifiers and a key on your keyboard. Only one key code is supported. Key code is case insensitive.\n\n List of supported modifiers:\n - `Ctrl`\n - `Alt`\n - `Shift`\n - `Command`: `Command` modifier maps to Apple key (⌘) on Mac, and maps to the Windows key on Windows and Linux.\n\n List of supported keys:\n - Alphabet: A-Z\n - Digits: 0-9\n - Function Keys: F1-F24\n - Comma\n - Period\n - Tab\n - Home / End / PageUp / PageDown / Insert / Delete\n - Up / Down / Left / Right\n - MediaNextTrack / MediaPlayPause / MediaPrevTrack / MediaStop\n - Comma or ,\n - Period or .\n - Tab or \\t\n - Backquote or `\n - Enter or \\n\n - Minus or -\n - Equal or =\n - Backslash or \\\n - Semicolon or ;\n - Quote or '\n - BracketLeft or [\n - BracketRight or ]\n - Escape\n - [DOM Level 3 W3C KeyboardEvent Code Values](http://www.w3.org/TR/DOM-Level-3-Events-code/)\n\n **Single Key without Modifiers**\n\n The API `App.registerGlobalHotKey()` can support applications intercepting a single key (like `{ key: \"A\"}`). But users will not be able to use “A” normally any more until the app unregisters it. However, the API doesn’t limit this usage, and it would be useful if the applications wants to listen Media Keys.\n **Only use zero modifier when you are knowing what your are doing.**"
+  },
+  "shortcut.active": {
+    "prefix": "nw.shortcut.active",
+    "body": "shortcut.active",
+    "description": " Get or set the `active` callback of a `Shortcut`. It will be called when user presses the shortcut."
+  },
+  "shortcut.failed": {
+    "prefix": "nw.shortcut.failed",
+    "body": "shortcut.failed",
+    "description": " *Get or set the `failed` callback of a `Shortcut`. It will be called when application passes an invalid key , or failed to register the key."
+  },
+  "shortcut.on(\"active\", () => {})": {
+    "prefix": "nw.shortcut.on(\"active\", () => {})",
+    "body": [
+      "shortcut.on('active', function() {",
+      "  ${1:console.log(`Global desktop keyboard shortcut: \\${this.key\\} active.`);}",
+      "});"
+    ],
+    "description": " Get or set the `active` callback of a `Shortcut`. It will be called when user presses the shortcut."
+  },
+  "shortcut.on(\"failed\", () => {})": {
+    "prefix": "nw.shortcut.on(\"failed\", () => {})",
+    "body": [
+      "shortcut.on('failed', function(msg) {",
+      "  ${1:console.log(`:(, fail to register or couldn't parse the key \\${this.key\\}.`, msg);}",
+      "});"
+    ],
+    "description": " Get or set the `active` callback of a `Shortcut`. It will be called when user presses the shortcut."
+  },
+  "new nw.Tray(option)": {
+    "prefix": "nw.Tray(option)",
+    "body": [
+      "const tray = new nw.Tray({",
+      "  title: \"${1:title}\",",
+      "  tooltip: \"${2:tooltip}\",",
+      "  icon: \"${3:img/icon.png}\",",
+      "  alticon: \"${4:img/alticon.png}\",",
+      "  iconsAreTemplates: ${5|true,false|},",
+      "  // menu: new nw.Menu(),",
+      "});"
+    ],
+    "description": " - `option` `{Object}`\n   - `title` `{String}` title\n   - `tooltip` `{String}` tooltip\n   - `icon` `{String}` icon\n   - `alticon` `{String}` alternate\n   - `iconsAreTemplates` `{Boolean}` whether icons are templates\n   - `menu` `{Menu}` popup menu\n Create a new `Tray`, `option` is an object contains initial settings for the `Tray`. Every field has its own property in the `Tray`, see documentation of each property for details."
+  },
+  "tray.title": {
+    "prefix": "nw.tray.title",
+    "body": "tray.title",
+    "description": " Get or set the `title` of the tray.\n\n On Mac OS X `title` will be showed on status bar along with its `icon`, but it doesn’t have effects on GTK and Windows, since the latter two platforms only support tray to be showed as icons."
+  },
+  "tray.tooltip": {
+    "prefix": "nw.tray.tooltip",
+    "body": "tray.tooltip",
+    "description": " Get or set the `tooltip` of the tray. `tooltip` shows when you hover the `Tray` with mouse.\n\n **`tooltip` is showed on all three platforms. Should be set as `Tray` property rather from `option` object constructor.**"
+  },
+  "tray.icon": {
+    "prefix": "nw.tray.icon",
+    "body": "tray.icon",
+    "description": " Get or set the `icon` of the tray, `icon` must a path to your icon file. It can be a relative path which points to an icon in your app, or an absolute path pointing to a file in user’s system.\n\n **Mac OS X caveat: when used in notification context, png icon is not sized down like in windows notification area, it is rather displayed in 1:1 ratio.**"
+  },
+  "tray.alticon": {
+    "prefix": "nw.tray.alticon",
+    "body": "tray.alticon",
+    "description": "**Mac Only.**\n Get or set the alternate (active) tray icon."
+  },
+  "tray.iconsAreTemplates": {
+    "prefix": "nw.tray.iconsAreTemplates",
+    "body": "tray.iconsAreTemplates",
+    "description": "**Mac Only.**\n Get or set whether `icon` and `alticon` images are treated as “templates” (`true` by default). When the property is set to `true` the images are treated as “templates” and the system automatically ensures proper styling according to the various states of the status item (e.g. dark menu, light menu, etc.). Template images should consist only of black and clear colours and can use the alpha channel in the image to adjust the opacity of black content."
+  },
+  "tray.menu": {
+    "prefix": "nw.tray.menu",
+    "body": "tray.menu",
+    "description": " Get or set the `menu` of the tray, `menu` will be showed when you click on the tray icon.\n\n On Mac OS X the menu will be showed when you click on the tray (which is the only action available for tray icons on Mac OS X). On Windows and Linux, the menu will be showed when you single click on the tray with right mouse button, clicking with left mouse button sends the `click` event and does not show a menu.\n\n In order to reduce differences from different platforms, setting `menu` property is the only way to bind a menu to tray, there’s no way to popup a menu with left mouse button click on Linux and Windows."
+  },
+  "tray.remove()": {
+    "prefix": "nw.tray.remove()",
+    "body": "tray.remove();",
+    "description": " Remove the tray.\n\n Once removed, you will not be able to show it again and you should set your tray variable to `null` to make it garbage collected. There is no way temporarily hide a tray icon."
+  },
+  "tray.on(\"click\", () => {})": {
+    "prefix": "tray.on(\"click\", () => {})",
+    "body": [
+      "tray.on(\"click\", () => {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when user clicks the menu item with left mouse button.\n\n You cannot catch click with right mouse button, because it is used to show menu. Even if you’re not binding a menu to a tray, you still can not listen to it. Double click events are also ignored.\n\n **Mac**\n\n NW.js does not support menulet (⌘+drag) since it will prohibit NW.js apps from being distributed in the App Store."
+  },
+  "webview.showDevTools(show, [container])": {
+    "prefix": "nw.webview.showDevTools(show, [container])",
+    "body": "webview.showDevTools(${1|true,false|});",
+    "description": " - `show` `{boolean}` flag: open or close the devtools window\n - `container` `{webview Element}` Optional the element of the `<webview>` to be used to display devtools. By default, the DevTools is shown with a new window.\n DevTools extensions can be used in the embedded webview. Just load them with `--load-extensions`. The container `webview` should be made trusted by adding an addtional webview section in the `manifest.json` of the extension and add an attribute `partition=\"trusted\"` to the webview tag.\n ```json\n \"webview\": {\n   \"partitions\": [\n     {\n       \"name\": \"trusted\",\n       \"accessible_resources\": [\"<all_urls>\"]\n     }\n   ]\n }\n ```"
+  },
+  "webview.inspectElementAt(x, y)": {
+    "prefix": "nw.webview.inspectElementAt(x, y)",
+    "body": "webview.inspectElementAt(${1:x}, ${2:y});",
+    "description": " After opening devtools with `webview.showDevTools()`, this function can be called to inspect the element located at (x, y)."
+  },
+  "webview.addContentScripts(rules)": {
+    "prefix": "nw.webview.addContentScripts(rules)",
+    "body": [
+      "webview.addContentScripts([",
+      "  {",
+      "    name: \"inject\",",
+      "    matches: [\"<all_urls>\"],",
+      "    css: { files: [\"mystyles.css\"] },",
+      "    js: { files: [\"jquery.js\", \"myscript.js\"] },",
+      "    run_at: \"document_start\",",
+      "    mainWorld: true,",
+      "  },",
+      "  {",
+      "    name: \"anotherRule\",",
+      "    matches: [\"http://www.bar.com/*\"],",
+      "    js: { code: \"document.body.style.backgroundColor = 'red';\" },",
+      "    run_at: \"document_end\",",
+      "    mainWorld: true,",
+      "  },",
+      "]);"
+    ],
+    "description": " executeScript in main world\n The executeScript function in Chrome lets you inject JS code into webview, but in a isolated world. To access JS objects in the target DOM context, you can inject code into the main world context instead. Simply adding `{ mainWorld: true }` to `InjectDetails` typed parameter of the function."
+  },
+  "webview.getCookieStoreId()": {
+    "prefix": "nw.webview.getCookieStoreId()",
+    "body": [
+      "// Show all cookies for e.g. http://docs.nwjs.io in console (to have some cookies there you need to visit page first)",
+      "chrome.cookies.getAll(",
+      "  { url: \"http://docs.nwjs.io\", storeId: webview.getCookieStoreId() },",
+      "  (cookies) => {",
+      "    ${1:console.log(cookies);}",
+      "  }",
+      ");"
+    ],
+    "description": " After opening devtools with `webview.showDevTools()`, this function can be called to inspect the element located at (x, y)."
+  },
+  "nw.Window.get([window_object])": {
+    "prefix": "nw.Window.get([window_object])",
+    "body": "const win = nw.Window.get(${1});",
+    "description": " - `window_object` `{DOM Window}` Optional is the DOM window\n - Returns `{Window}` the native `Window` object\n\n If `window_object` is not specifed, then return current window's `Window` object, otherwise return window_object's `Window` object.\n\n **If `window_object` is `iframe.contentWindow`, the function will still return topmost window's `Window` object.**"
+  },
+  "nw.Window.getAll(winList => {})": {
+    "prefix": "nw.Window.getAll(winList => {})",
+    "body": [
+      "nw.Window.getAll((winList) => {",
+      "  ${1:console.log(winList);}",
+      "});"
+    ],
+    "description": " Get all windows with a callback function whose parameter is an array of nw.Window object. This function is supported since 0.42.6."
+  },
+  "nw.Window.open(url, [options], [callback])": {
+    "prefix": "nw.Window.open(url, [options], [callback])",
+    "body": [
+      "nw.Window.open(\"${1:url}\", {",
+      "  id: \"${2}\",",
+      "  title: \"${3}\",",
+      "  width: ${4:814},",
+      "  height: ${5:638},",
+      "  position: \"${6|center,null,mouse|}\",",
+      "  // icon: \"\",",
+      "  // always_on_top: false,",
+      "  // frame: true,",
+      "  // transparent: false,",
+      "  // fullscreen: false,",
+      "  // show: true,",
+      "  // show_in_taskbar: true,",
+      "  // min_width: 0,",
+      "  // min_height: 0,",
+      "  // max_width: 0,",
+      "  // max_height: 0,",
+      "  // resizable: true,",
+      "  // as_desktop: false,",
+      "  // visible_on_all_workspaces: false,",
+      "  // kiosk: false",
+      "  // new_instance: true,",
+      "  // mixed_context: false,",
+      "  // inject_js_start: \"\",",
+      "  // inject_js_end: \"\",",
+      "}, (win) => {",
+      "  ${7}",
+      "});"
+    ],
+    "description": " - `url` `{String}` URL to be loaded in the opened window\n\n - `options` `{Object}` Optional see Window subfields in manifest format.\n   - `id` `{String}` the id used to identify the window. This will be used to remember the size and position of the window and restore that geometry when a window with the same id is later opened. [See also the Chrome App documentation](https://developer.chrome.com/apps/app_window#type-CreateWindowOptions)\n   - `title` `{String}` the default title of window created by NW.js, it’s very useful if you want to show your own title when the app is starting.\n   - `width` `{Integer}` the initial inner width of the main window.\n   - `height` `{Integer}` the initial inner height of the main window.\n   - `icon` `{String}` path to window's icon\n   - `position` `{String}` be `null` or `center` or `mouse`, controls where window will be put\n   - `min_width` `{Integer}` minimum inner width of window\n   - `min_height` `{Integer}` minimum inner height of window\n   - `max_width` `{Integer}` maximum inner width of window\n   - `max_height` `{Integer}` maximum inner height of window\n   - `as_desktop` `{Boolean}` **Linux Only** show as desktop background window under X11 environment\n   - `resizable` `{Boolean}` whether window is resizable. Beware, if resizable is set to false on OS X and frame is set to true, the user will still be able to make the window fullscreen. Set fullscreen to false to disable the fullscreen control.\n   - `always_on_top` `{Boolean}` whether the window should always stay on top of other windows.\n   - `visible_on_all_workspaces` `{Boolean}` **Mac & Linux Only** whether the window should be visible on all workspaces simultaneously.\n   - `fullscreen` `{Boolean}` whether window is fullscreen. Beware, if frame is also set to false in fullscreen it will prevent the mouse from being captured on the very edges of the screen. You should avoid activate it if fullscreen is also set to true.\n   - `show_in_taskbar` `{Boolean}` whether the window is shown in taskbar or dock. The default is `true`.\n   - `frame` `{Boolean}` specify it to `false` to make the window frameless\n   - `show` `{Boolean}` specify it to `false` if you want your app to be hidden on startup\n   - `kiosk` `{Boolean}` whether to use `Kiosk` mode. In `Kiosk` mode, the app will be fullscreen and try to prevent users from leaving the app, so you should remember to provide a way in app to leave `Kiosk` mode. This mode is mainly used for presentation on public displays\n   - `transparent` `{Boolean}` whether to turn on transparent window mode. The default is `false`.\n     Control the transparency with rgba background value in CSS. Use command line option `--disable-transparency` to disable this feature completely.\n     There is experimental support for “click-through” on the transparent region: add `--disable-gpu` option to the command line.\n\n   **And following extra fields can also be used in options.**\n   - `new_instance` `{Boolean}` Optional whether to open a new window in a separate render process.\n   - `mixed_context` `{Boolean}` Optional If true, the Node context and DOM context are merged in the new window’s process. Use only when `new_instance` is true.\n   - `inject_js_start` `{String}` Optional the script to be injected before any DOM is constructed and any script is run. See Manifest format\n   - `inject_js_end` `{String}` Optional the script to be injected after the document object is loaded, before onload event is fired. See Manifest format\n   - `id` `{String}` Optional the `id` used to identify the window. This will be used to remember the size and position of the window and restore that geometry when a window with the same id is later opened. [See also the Chrome App documentation](https://developer.chrome.com/apps/app_window#type-CreateWindowOptions)\n\n - `callback(win)` `{Function}` Optional callback when with the opened native `Window` object\n\n Open a new window and load `url` in it.\n\n **You should wait for the Window’s `loaded` event before interacting with any of its components.**\n\n **The opened window is not focused by default. If you want it to be focused by default, you can set `focus` to `true` in `options`.**"
+  },
+  "win.window": {
+    "prefix": "nw.win.window",
+    "body": "win.window",
+    "description": " Get the corresponding DOM window object of the native window."
+  },
+  "win.x": {
+    "prefix": "nw.win.x",
+    "body": "win.x",
+    "description": " Get or set left offset from window frame to screen."
+  },
+  "win.y": {
+    "prefix": "nw.win.y",
+    "body": "win.y",
+    "description": " Get or set top offset from window frame to screen."
+  },
+  "win.width": {
+    "prefix": "nw.win.width",
+    "body": "win.width",
+    "description": " Get or set window’s width, including the window’s frame."
+  },
+  "win.height": {
+    "prefix": "nw.win.height",
+    "body": "win.height",
+    "description": " Get or set window’s height, including the window’s frame."
+  },
+  "win.menu": {
+    "prefix": "nw.win.menu",
+    "body": "win.menu",
+    "description": " Get or set window’s menubar. Set with a Menu with type `menubar`. When `win.menu` is set to `null`, the menubar is completely removed for Windows and Linux, and the menubar is cleared out on Mac.\n\n See [Customize Menubar](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/) for the usage of menubars. And see [Menu](https://nwjs.readthedocs.io/en/latest/References/Menu/) and [MenuItem](https://nwjs.readthedocs.io/en/latest/References/MenuItem/) for detailed APIs."
+  },
+  "win.isAlwaysOnTop": {
+    "prefix": "nw.win.isAlwaysOnTop",
+    "body": "win.isAlwaysOnTop",
+    "description": " Get whether the window is always on top of other windows."
+  },
+  "win.isFullscreen": {
+    "prefix": "nw.win.isFullscreen",
+    "body": "win.isFullscreen",
+    "description": " Get whether we’re in fullscreen mode."
+  },
+  "win.isTransparent": {
+    "prefix": "nw.win.isTransparent",
+    "body": "win.isTransparent",
+    "description": " Get whether transparency is turned on."
+  },
+  "win.isKioskMode": {
+    "prefix": "nw.win.isKioskMode",
+    "body": "win.isKioskMode",
+    "description": " Get whether we’re in kiosk mode."
+  },
+  "win.zoomLevel": {
+    "prefix": "nw.win.zoomLevel",
+    "body": "win.zoomLevel",
+    "description": " Get or set the page zoom. `0` for normal size; positive value for zooming in; negative value for zooming out."
+  },
+  "win.cookies.get(details, cookie => {})": {
+    "prefix": "nw.win.cookies.get(details, cookie => {})",
+    "body": [
+      "win.cookies.get(",
+      "  { name: \"${1}\", url: \"${2}\", storeId: \"\" },",
+      "  (cookie) => {",
+      "    ${3}",
+      "  }",
+      ");"
+    ],
+    "description": " - `details` `{Object}` Details to identify the cookie.\n   - `name` `{String}` The name of the cookie to access.\n   - `url` `{String}` The URL with which the cookie to access is associated. This argument may be a full URL, in which case any data following the URL path (e.g. the query string) is simply ignored. If host permissions for this URL are not specified in the manifest file, the API call will fail.\n   - `storeId` `{String}` [optional] The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.\n - `callback(cookie)` `{Function}`\n   `cookie` Represents information about an HTTP cookie.\n   - `name` `{String}` The name of the cookie.\n   - `value` `{String}` The value of the cookie.\n   - `storeId` `{String}` The ID of the cookie store containing this cookie, as provided in getAllCookieStores().\n   - `domain` `{String}` The domain of the cookie (e.g. \"www.google.com\", \"example.com\").\n   - `path` `{String}` The path of the cookie.\n   - `sameSite` `{String}` The cookie's same-site status (i.e. whether the cookie is sent with cross-site requests).\n     - 'no_restriction' corresponds to a cookie set with 'SameSite=None'\n     - 'lax' to 'SameSite=Lax'\n     - 'strict' to 'SameSite=Strict'\n     - 'unspecified' corresponds to a cookie set without the SameSite attribute\n   - `secure` `{Boolean}` True if the cookie is marked as Secure (i.e. its scope is limited to secure channels, typically HTTPS).\n   - `session` `{Boolean}` True if the cookie is a session cookie, as opposed to a persistent cookie with an expiration date.\n   - `expirationDate` `{Number}` The expiration date of the cookie as the number of seconds since the UNIX epoch. Not provided for session cookies.\n   - `hostOnly` `{Boolean}` True if the cookie is a host-only cookie (i.e. a request's host must exactly match the domain of the cookie).\n   - `httpOnly` `{Boolean}` True if the cookie is marked as HttpOnly (i.e. the cookie is inaccessible to client-side scripts).\n\n Retrieves information about a single cookie. If more than one cookie of the same name exists for the given URL, the one with the longest path will be returned. For cookies with the same path length, the cookie with the earliest creation time will be returned."
+  },
+  "win.cookies.getAll(details, cookies => {})": {
+    "prefix": "nw.win.cookies.getAll(details, cookies => {})",
+    "body": [
+      "win.cookies.getAll(",
+      "  {",
+      "    domain: \"${1}\",",
+      "    // name: \"\",",
+      "    // storeId: \"\",",
+      "    // url: \"\",",
+      "    // path: \"\",",
+      "    // secure: false,",
+      "    // session: false,",
+      "  },",
+      "  (cookies) => {",
+      "    ${2}",
+      "  }",
+      ");"
+    ],
+    "description": " - `details` `{Object}` Information to filter the cookies being retrieved. All fields are optional.\n   - `domain` `{String}` Restricts the retrieved cookies to those whose domains match or are subdomains of this one.\n   - `name` `{String}` Filters the cookies by name.\n   - `path` `{String}` Restricts the retrieved cookies to those whose path exactly matches this string.\n   - `secure` `{Boolean}` Filters the cookies by their Secure property.\n   - `session` `{Boolean}` Filters out session vs. persistent cookies.\n   - `storeId` `{String}` The cookie store to retrieve cookies from. If omitted, the current execution context's cookie store will be used.\n   - `url` `{String}` Restricts the retrieved cookies to those that would match the given URL.\n - `callback(cookies)` `{Function}`\n   `cookies` All the existing, unexpired cookies that match the given cookie info. See win.cookies.get() for more information.\n\n Retrieves all cookies from a single cookie store that match the given information. The cookies returned will be sorted, with those with the longest path first. If multiple cookies have the same path length, those with the earliest creation time will be first."
+  },
+  "win.cookies.getAllCookieStores(cookieStores => {})": {
+    "prefix": "nw.win.cookies.getAllCookieStores(cookieStores => {})",
+    "body": [
+      "win.cookies.getAllCookieStores((cookieStores) => {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " - `callback(cookie)` `{Function}`\n   `cookieStores` `{Array}` All the existing cookie stores.\n   - `id` `{String}` The unique identifier for the cookie store.\n   - `tabIds` `{Number[]}` Identifiers of all the browser tabs that share this cookie store.\n\n Lists all existing cookie stores."
+  },
+  "win.cookies.remove(details, details => {})": {
+    "prefix": "nw.win.cookies.remove(details, details => {})",
+    "body": [
+      "win.cookies.remove(",
+      "  { name: \"${1}\", url: \"${2}\", storeId: \"\" },",
+      "  (details) => {",
+      "    ${3}",
+      "  }",
+      ");"
+    ],
+    "description": " - `details` `{Object}` Details to identify the cookie.\n   - `name` `{String}` The name of the cookie to access.\n   - `url` `{String}` The URL with which the cookie to access is associated. This argument may be a full URL, in which case any data following the URL path (e.g. the query string) is simply ignored. If host permissions for this URL are not specified in the manifest file, the API call will fail.\n   - `storeId` `{String}` [optional] The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.\n - `callback(details)` `{Function}`\n   `details` Contains details about the cookie that's been removed. If removal failed for any reason, this will be `null`, and [runtime.lastError](https://developer.chrome.com/docs/extensions/reference/runtime/#property-lastError) will be set.\n   - `name` `{String}` The name of the cookie that's been removed.\n   - `storeId` `{String}` The ID of the cookie store from which the cookie was removed.\n   - `url` `{String}` The URL associated with the cookie that's been removed."
+  },
+  "win.cookies.set(details, cookie => {})": {
+    "prefix": "nw.win.cookies.set(details, cookie => {})",
+    "body": [
+      "win.cookies.set(",
+      "  {",
+      "    url: \"${1}\",",
+      "    name: \"${2}\",",
+      "    value: \"${3}\",",
+      "    // expirationDate: 31536000,",
+      "    // httpOnly: false,",
+      "    // path: \"\",",
+      "    // sameSite: \"\", // \"no_restriction\", \"lax\", \"strict\", \"unspecified\"",
+      "    // secure: false,",
+      "    // storeId: \"\",",
+      "  },",
+      "  (cookie) => {",
+      "    ${4}",
+      "  }",
+      ");"
+    ],
+    "description": " - `details` `{Object}` Details about the cookie being set. `url` is required, other fields are optional.\n   - `domain` `{String}` The domain of the cookie. If omitted, the cookie becomes a host-only cookie.\n   - `expirationDate` `{Number}` The expiration date of the cookie as the number of seconds since the UNIX epoch. If omitted, the cookie becomes a session cookie.\n   - `httpOnly` `{Boolean}` Whether the cookie should be marked as HttpOnly. Defaults to false.\n   - `name` `{String}` The name of the cookie. Empty by default if omitted.\n   - `path` `{String}` The path of the cookie. Defaults to the path portion of the url parameter.\n   - `sameSite` `{String}` The cookie's same-site status. Defaults to \"unspecified\", i.e., if omitted, the cookie is set without specifying a SameSite attribute.\n   - `secure` `{Boolean}` Whether the cookie should be marked as Secure. Defaults to false.\n   - `storeId` `{String}` The ID of the cookie store in which to set the cookie. By default, the cookie is set in the current execution context's cookie store.\n   - `url` `{String}` The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie. If host permissions for this URL are not specified in the manifest file, the API call will fail.\n   - `value` `{String}` The value of the cookie. Empty by default if omitted.\n - `callback(cookie)` `{Function}`\n   `cookie` Contains details about the cookie that's been set. If setting failed for any reason, this will be \"null\", and runtime.lastError will be set.\n\n Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist."
+  },
+  "win.cookies.onChanged.addListener(changeInfo => {})": {
+    "prefix": "nw.win.cookies.onChanged.addListener(changeInfo => {})",
+    "body": [
+      "win.cookies.onChanged.addListener(",
+      "  (changeInfo) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": " - changeInfo {Object}\n   - cause {String} The underlying reason behind the cookie's change.\n   - cookie {Object} Information about the cookie that was set or removed.\n   - removed {Boolean} True if a cookie was removed.\n\nFired when a cookie is set or removed. As a special case, note that updating a cookie's properties is implemented as a two step process: the cookie to be updated is first removed entirely, generating a notification with `cause` of `overwrite` . Afterwards, a new cookie is written with the updated values, generating a second notification with `cause` `explicit`."
+  },
+  "win.cookies.onChanged.removeListener(listener)": {
+    "prefix": "nw.win.cookies.onChanged.removeListener(listener)",
+    "body": "win.cookies.onChanged.removeListener(${1:listener});",
+    "description": " - changeInfo {Object}\n   - cause {String} The underlying reason behind the cookie's change.\n   - cookie {Object} Information about the cookie that was set or removed.\n   - removed {Boolean} True if a cookie was removed.\n\nFired when a cookie is set or removed. As a special case, note that updating a cookie's properties is implemented as a two step process: the cookie to be updated is first removed entirely, generating a notification with `cause` of `overwrite` . Afterwards, a new cookie is written with the updated values, generating a second notification with `cause` `explicit`."
+  },
+  "win.cookies.onChanged.getListeners(listeners => {})": {
+    "prefix": "nw.win.cookies.onChanged.getListeners(listeners => {})",
+    "body": [
+      "win.cookies.onChanged.getListeners(",
+      "  (listeners) => {",
+      "    ${1}",
+      "  }",
+      ");"
+    ],
+    "description": ""
+  },
+  "win.cookies.onChanged.dispatch(changeInfo)": {
+    "prefix": "nw.win.cookies.onChanged.dispatch(changeInfo)",
+    "body": [
+      "win.cookies.onChanged.dispatch({",
+      "  cause: \"${1|explicit,expired,explicit,expired_overwrite,overwrite|}\",",
+      "  cookie: {",
+      "    name: \"${2}\",",
+      "    value: \"${3}\",",
+      "    storeId: \"${4}\",",
+      "    domain: \"${5}\",",
+      "    path: \"${6}\",",
+      "    expirationDate: \"${7}\",",
+      "    hostOnly: ${8|false,true|},",
+      "    httpOnly: ${9|false,true|},",
+      "    sameSite: \"${10|unspecified,lax,strict,no_restriction|}\",",
+      "    secure: ${11|false,true|},",
+      "    session: ${12|false,true|},",
+      "  },",
+      "  removed: ${13|false,true|},",
+      "});"
+    ],
+    "description": ""
+  },
+  "win.cookies.onChanged.dispatchNW({}, changeInfo)": {
+    "prefix": "nw.win.cookies.onChanged.dispatchNW({}, changeInfo)",
+    "body": [
+      "win.cookies.onChanged.dispatchNW(",
+      "  {},",
+      "  {",
+      "    cause: \"${1|explicit,expired,explicit,expired_overwrite,overwrite|}\",",
+      "    cookie: {",
+      "      name: \"${2}\",",
+      "      value: \"${3}\",",
+      "      storeId: \"${4}\",",
+      "      domain: \"${5}\",",
+      "      path: \"${6}\",",
+      "      expirationDate: \"${7}\",",
+      "      hostOnly: ${8|false,true|},",
+      "      httpOnly: ${9|false,true|},",
+      "      sameSite: \"${10|unspecified,lax,strict,no_restriction|}\",",
+      "      secure: ${11|false,true|},",
+      "      session: ${12|false,true|},",
+      "    },",
+      "    removed: ${13|false,true|},",
+      "  }",
+      ");"
+    ],
+    "description": ""
+  },
+  "win.cookies.onChanged.hasListener(listener)": {
+    "prefix": "nw.win.cookies.onChanged.hasListener(listener)",
+    "body": "win.cookies.onChanged.hasListener(${1:listener});",
+    "description": ""
+  },
+  "win.cookies.onChanged.hasListeners()": {
+    "prefix": "nw.win.cookies.onChanged.hasListeners()",
+    "body": "win.cookies.onChanged.hasListeners();",
+    "description": ""
+  },
+  "win.cookies.SameSiteStatus.LAX": {
+    "prefix": "nw.win.cookies.SameSiteStatus.LAX",
+    "body": "win.cookies.SameSiteStatus.LAX",
+    "description": ""
+  },
+  "win.cookies.SameSiteStatus.NO_RESTRICTION": {
+    "prefix": "nw.win.cookies.SameSiteStatus.NO_RESTRICTION",
+    "body": "win.cookies.SameSiteStatus.NO_RESTRICTION",
+    "description": ""
+  },
+  "win.cookies.SameSiteStatus.STRICT": {
+    "prefix": "nw.win.cookies.SameSiteStatus.STRICT",
+    "body": "win.cookies.SameSiteStatus.STRICT",
+    "description": ""
+  },
+  "win.cookies.SameSiteStatus.UNSPECIFIED": {
+    "prefix": "nw.win.cookies.SameSiteStatus.UNSPECIFIED",
+    "body": "win.cookies.SameSiteStatus.UNSPECIFIED",
+    "description": ""
+  },
+  "win.cookies.OnChangedCause.EVICTED": {
+    "prefix": "nw.win.cookies.OnChangedCause.EVICTED",
+    "body": "win.cookies.OnChangedCause.EVICTED",
+    "description": " If a cookie was automatically removed due to garbage collection, `cause` will be `evicted`."
+  },
+  "win.cookies.OnChangedCause.EXPIRED": {
+    "prefix": "nw.win.cookies.OnChangedCause.EXPIRED",
+    "body": "win.cookies.OnChangedCause.EXPIRED",
+    "description": " If a cookie was automatically removed due to expiry, `cause` will be `expired`."
+  },
+  "win.cookies.OnChangedCause.EXPIRED_OVERWRITE": {
+    "prefix": "nw.win.cookies.OnChangedCause.EXPIRED_OVERWRITE",
+    "body": "win.cookies.OnChangedCause.EXPIRED_OVERWRITE",
+    "description": " If a cookie was removed due to being overwritten with an already-expired expiration date, `cause` will be set to `expired_overwrite`."
+  },
+  "win.cookies.OnChangedCause.EXPLICIT": {
+    "prefix": "nw.win.cookies.OnChangedCause.EXPLICIT",
+    "body": "win.cookies.OnChangedCause.EXPLICIT",
+    "description": " If a cookie was inserted, or removed via an explicit call to `chrome.cookies.remove()`, `cause` will be `explicit`."
+  },
+  "win.cookies.OnChangedCause.OVERWRITE": {
+    "prefix": "nw.win.cookies.OnChangedCause.OVERWRITE",
+    "body": "win.cookies.OnChangedCause.OVERWRITE",
+    "description": " If a cookie was automatically removed due to a `set` call that overwrote it, `cause` will be `overwrite`."
+  },
+  "win.moveTo(x, y)": {
+    "prefix": "nw.win.moveTo(x, y)",
+    "body": "win.moveTo(${1:x}, ${2:y});",
+    "description": " - `x` `{Integer}` offset to the left of the screen\n - `y` `{Integer}` offset to the top of the screen\n Moves a window’s left and top edge to the specified coordinates."
+  },
+  "win.moveBy(x, y)": {
+    "prefix": "nw.win.moveBy(x, y)",
+    "body": "win.moveBy(${1:x}, ${2:y});",
+    "description": " - `x` `{Integer}` horizontal offset\n - `y` `{Integer}` vertical offset\n Moves a window a specified number of pixels relative to its current coordinates."
+  },
+  "win.resizeTo(width, height)": {
+    "prefix": "nw.win.resizeTo(width, height)",
+    "body": "win.resizeTo(${1:width}, ${2:height});",
+    "description": " - `width` `{Integer}` the inner width of the window\n - `height` `{Integer}` the inner height of the window\n Resizes a window to the specified `width` and `height`."
+  },
+  "win.setInnerWidth(width)": {
+    "prefix": "nw.win.setInnerWidth(width)",
+    "body": "win.setInnerWidth(${1:width});",
+    "description": " - `width` `{Integer}` the inner width of the window"
+  },
+  "win.setInnerHeight(height)": {
+    "prefix": "nw.win.setInnerHeight(height)",
+    "body": "win.setInnerHeight(${1:height});",
+    "description": " - `height` `{Integer}` the inner height of the window"
+  },
+  "win.resizeBy(width, height)": {
+    "prefix": "nw.win.resizeBy(width, height)",
+    "body": "win.resizeBy(${1:width}, ${2:height});",
+    "description": " - `width` `{Integer}` the offset width of the window\n - `height` `{Integer}` the offset height of the window\n Resizes a window by the specified amount."
+  },
+  "win.focus()": {
+    "prefix": "nw.win.focus()",
+    "body": "win.focus();",
+    "description": " Focus on the window."
+  },
+  "win.blur()": {
+    "prefix": "nw.win.blur()",
+    "body": "win.blur();",
+    "description": " Move focus away. Usually it will move focus to other windows of your app, since on some platforms there is no concept of blur."
+  },
+  "win.show([is_show])": {
+    "prefix": "nw.win.show([is_show])",
+    "body": "win.show(${1|true,false|});",
+    "description": " - `is_show` `{Boolean}` Optional specify whether the window should be shown or hidden. It’s set to `true` by default.\n Show the window if it’s not shown.\n\n `show(false)` has the same effect with `hide()`.\n\n **`show` will not `focus` on the window on some platforms, so you need to call `focus()` if you want to.**"
+  },
+  "win.hide()": {
+    "prefix": "nw.win.hide()",
+    "body": "win.hide();",
+    "description": " Hide the window. User will not be able to find the window once it’s hidden."
+  },
+  "win.close([force])": {
+    "prefix": "nw.win.close([force])",
+    "body": "win.close(${1|false,true|});",
+    "description": " - `force` `{Boolean}` specify whether to close the window forcefully and bypass the `close` event.\n Closes the current window. You can prevent the closing by listening to the `close` event. If `force` is specified and equals `true`, then the `close` event will be ignored."
+  },
+  "win.reload()": {
+    "prefix": "nw.win.reload()",
+    "body": "win.reload();",
+    "description": " Reloads the current window."
+  },
+  "win.reloadDev()": {
+    "prefix": "nw.win.reloadDev()",
+    "body": "win.reloadDev();",
+    "description": " Reloads the current page by starting a new renderer process from scratch."
+  },
+  "win.reloadIgnoringCache()": {
+    "prefix": "nw.win.reloadIgnoringCache()",
+    "body": "win.reloadIgnoringCache();",
+    "description": " Like `reload()`, but don’t use caches (aka “shift-reload”)."
+  },
+  "win.maximize()": {
+    "prefix": "nw.win.maximize()",
+    "body": "win.maximize();",
+    "description": " Maximize the window on GTK and Windows, and zoom the window on Mac OS X."
+  },
+  "win.minimize()": {
+    "prefix": "nw.win.minimize()",
+    "body": "win.minimize();",
+    "description": " Minimize the window to task bar on Windows, iconify the window on GTK, and miniaturize the window on Mac OS X."
+  },
+  "win.restore()": {
+    "prefix": "nw.win.restore()",
+    "body": "win.restore();",
+    "description": " Restore window to previous state after the window is minimized or maximized."
+  },
+  "win.enterFullscreen()": {
+    "prefix": "nw.win.enterFullscreen()",
+    "body": "win.enterFullscreen();",
+    "description": " Make the window fullscreen.\n\n **This function is different with HTML5 FullScreen API, which can make part of the page fullscreen, `Window.enterFullscreen()` will only fullscreen the whole window.**"
+  },
+  "win.leaveFullscreen()": {
+    "prefix": "nw.win.leaveFullscreen()",
+    "body": "win.leaveFullscreen();",
+    "description": " Leave the fullscreen mode."
+  },
+  "win.toggleFullscreen()": {
+    "prefix": "nw.win.toggleFullscreen()",
+    "body": "win.toggleFullscreen();",
+    "description": " Toggle the fullscreen mode."
+  },
+  "win.enterKioskMode()": {
+    "prefix": "nw.win.enterKioskMode()",
+    "body": "win.enterKioskMode();",
+    "description": " Enter the Kiosk mode. In Kiosk mode, the app will be fullscreen and try to prevent users from leaving the app, so you should remember to provide a way in app to leave Kiosk mode. This mode is mainly used for presentation on public displays."
+  },
+  "win.leaveKioskMode()": {
+    "prefix": "nw.win.leaveKioskMode()",
+    "body": "win.leaveKioskMode();",
+    "description": " Leave the Kiosk mode."
+  },
+  "win.toggleKioskMode()": {
+    "prefix": "nw.win.toggleKioskMode()",
+    "body": "win.toggleKioskMode();",
+    "description": " Toggle the kiosk mode."
+  },
+  "win.setShadow(shadow)": {
+    "prefix": "nw.win.setShadow(shadow)",
+    "body": "win.setShadow(${1|true,false|});",
+    "description": "**Mac Only.**\n - `shadow` `{Boolean}` whether the window has a shadow\n Turn the window’s native shadow on/off. Useful for frameless, transparent windows."
+  },
+  "win.showDevTools([iframe], [callback])": {
+    "prefix": "nw.win.showDevTools([iframe], [callback])",
+    "body": "win.showDevTools();",
+    "description": "**This API is only available on SDK build flavor.**\n\n - `iframe` `{String}` or `{HTMLIFrameElement}` Optional the id or the element of the `<iframe>` to be jailed on. By default, the DevTools is shown for entire window.\n - `callback(dev_win)` `{Function}` callback with the native window of the DevTools window.\n Open the devtools to inspect the window.\n\n The optional `iframe` as `String` should be the value of `id` attribute of any `<iframe>` element in the window. It jails the DevTools to inspect the `<iframe>` only. If it is an empty string, this feature has no effect.\n\n The optional `iframe` as `HTMLIFrameElement` should be the iframe object. And it serves the same purpose with the `id` argument.\n\n This function returns a `Window` object via the callback. You can use any properties and methods of `Window` except the events.\n\n See also in [webview reference](https://nwjs.readthedocs.io/en/latest/References/webview%20Tag/) on how to open DevTools for webview or open DevTools in a webview."
+  },
+  "win.closeDevTools()": {
+    "prefix": "nw.win.closeDevTools()",
+    "body": "win.closeDevTools();",
+    "description": "**This API is only available on SDK build flavor.**\n\n Close the devtools window."
+  },
+  "win.getPrinters(callback)": {
+    "prefix": "nw.win.getPrinters(callback)",
+    "body": [
+      "win.getPrinters((printers) => {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Enumerate the printers in the system. The callback function will receive an array of JSON objects for the printer information. The device name of the JSON object can be used as parameter in `nw.Window.print()`."
+  },
+  "win.isDevToolsOpen()": {
+    "prefix": "nw.win.isDevToolsOpen()",
+    "body": "win.isDevToolsOpen();",
+    "description": "**This API is only available on SDK build flavor.**\n\n Query the status of devtools window."
+  },
+  "win.print(options)": {
+    "prefix": "nw.win.print(options)",
+    "body": [
+      "win.print({",
+      "  // autoprint: true,",
+      "  // silent: false,",
+      "  // printer: \"\",",
+      "  // pdf_path: \"\",",
+      "  // headerFooterEnabled: true,",
+      "  // landscape: true,",
+      "  // mediaSize: {",
+      "  //   name: \"CUSTOM\",",
+      "  //   width_microns: 279400,",
+      "  //   height_microns: 215900,",
+      "  //   custom_display_name: \"Letter\",",
+      "  //   is_default: true,",
+      "  // },",
+      "  // shouldPrintBackgrounds: true,",
+      "  // marginsType: 0,",
+      "  // marginsCustom: {",
+      "  //   marginBottom: 54,",
+      "  //   marginLeft: 70,",
+      "  //   marginRight: 28,",
+      "  //   marginTop: 32,",
+      "  // },",
+      "  // copies: 1,",
+      "  // scaleFactor: 100,",
+      "  // headerString: \"\",",
+      "  // footerString: \"\",",
+      "});"
+    ],
+    "description": " Print the web contents in the window with or without the need for user’s interaction. `options` is a JSON object with the following fields:\n\n - `autoprint` `{Boolean}` whether to print without the need for user’s interaction; optional, true by default\n - `silent` `{Boolean}` hide the flashing print preview dialog; optional, false by default\n - `printer` `{String}` the device name of the printer returned by `nw.Window.getPrinters()`; No need to set this when printing to PDF\n - `pdf_path` `{String}` the path of the output PDF when printing to PDF\n - `headerFooterEnabled` `{Boolean}` whether to enable header and footer\n - `landscape` `{Boolean}` whether to use landscape or portrait\n - `mediaSize` `{JSON Object}` the paper size spec\n   - `name` `{String}`\n   - `width_microns` `{Integer}`\n   - `height_microns` `{Integer}`\n   - `custom_display_name` `{String}`\n   - `is_default` `{Boolean}`\n - `shouldPrintBackgrounds` `{Boolean}` whether to print CSS backgrounds\n - `marginsType` `{Integer}` 0 - Default; 1 - No margins; 2 - minimum; 3 - Custom, see `marginsCustom`.\n - `marginsCustom` `{JSON Object}` the custom margin setting; units are points.\n   - `marginTop` `{Integer}`\n   - `marginBottom` `{Integer}`\n   - `marginLeft` `{Integer}`\n   - `marginRight` `{Integer}`\n - `copies` `{Integer}` the number of copies to print.\n - `scaleFactor` `{Integer}` the scale factor; 100 is the default.\n - `headerString` `{String}` string to replace the URL in the header.\n - `footerString` `{String}` string to replace the URL in the footer.\n\n If no options are being passed, `win.print({})` is what should be called."
+  },
+  "win.setMaximumSize(width, height)": {
+    "prefix": "nw.win.setMaximumSize(width, height)",
+    "body": "win.setMaximumSize(${1:width}, ${2:height});",
+    "description": " - `width` `{Integer}` the maximum width of the window\n - `height` `{Integer}` the maximum height of the window\n Set window’s maximum size."
+  },
+  "win.setMinimumSize(width, height)": {
+    "prefix": "nw.win.setMinimumSize(width, height)",
+    "body": "win.setMinimumSize(${1:width}, ${2:height});",
+    "description": " - `width` `{Integer}` the minimum width of the window\n - `height` `{Integer}` the minimum height of the window\n Set window’s minimum size."
+  },
+  "win.setResizable(resizable)": {
+    "prefix": "nw.win.setResizable(resizable)",
+    "body": "win.setResizable(${1|true,false|});",
+    "description": " - `resizable` `{Boolean}` whether the window can be resized\n Set whether window is resizable."
+  },
+  "win.setAlwaysOnTop(top)": {
+    "prefix": "nw.win.setAlwaysOnTop(top)",
+    "body": "win.setAlwaysOnTop(${1|true,false|});",
+    "description": " - `top` `{Boolean}` whether the window should always be on top\n Sets the widget to be on top of all other windows in the window system."
+  },
+  "win.setVisibleOnAllWorkspaces(visible)": {
+    "prefix": "nw.win.setVisibleOnAllWorkspaces(visible)",
+    "body": "win.setVisibleOnAllWorkspaces(${1|true,false|});",
+    "description": "**Mac and Linux Only.**\n - `visible` `{Boolean}` whether the window should be visible on all workspaces\n For platforms that support multiple workspaces (currently Mac OS X and Linux), this allows NW.js windows to be visible on all workspaces simultaneously."
+  },
+  "win.canSetVisibleOnAllWorkspaces()": {
+    "prefix": "nw.win.canSetVisibleOnAllWorkspaces()",
+    "body": "win.canSetVisibleOnAllWorkspaces();",
+    "description": "**Mac and Linux Only.**\n Returns a a boolean indicating if the platform (currently Mac OS X and Linux) support Window API method `setVisibleOnAllWorkspace(Boolean)`."
+  },
+  "win.setPosition(position)": {
+    "prefix": "nw.win.setPosition(position)",
+    "body": "win.setPosition(\"${1|center,null,mouse|}\");",
+    "description": " - `position` `{String}` the position of the window. There are three valid positions: `null` or `center` or `mouse`\n Move window to specified position. Currently only `center` is supported on all platforms, which will put window in the middle of the screen."
+  },
+  "win.setShowInTaskbar(show)": {
+    "prefix": "nw.win.setShowInTaskbar(show)",
+    "body": "win.setShowInTaskbar(${1|true,false|});",
+    "description": " - `show` `{Boolean}` whether show in task bar\n Control whether to show window in taskbar or dock. See also `show_in_taskbar` in [Manifest-format](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#show_in_taskbar)."
+  },
+  "win.requestAttention(attension)": {
+    "prefix": "nw.win.requestAttention(attension)",
+    "body": "win.requestAttention(${1|true,false|});",
+    "description": " - `attension` `{Boolean}` or `{Integer}` If a Boolean, it indicates to request or cancel user’s attension. If an Integer, it indicates the number of times the window flashes.\n Request the user’s attension by making the window flashes in the task bar.\n\n **Mac**\n On Mac, value < 0 will trigger `NSInformationalRequest`, while value > 0 will trigger `NSCriticalRequest`."
+  },
+  "win.capturePage(callback [, config])": {
+    "prefix": "nw.win.capturePage(callback [, config])",
+    "body": [
+      "win.capturePage((data) => {",
+      "  // If `datatype=datauri`, data is `uri`",
+      "  // If `datatype=raw`, data is `base64string`",
+      "  // If `datatype=buffer`, data is `buffer`",
+      "  ${3}",
+      "}, {",
+      "  format: \"${1|jpeg,png|}\",",
+      "  datatype: \"${2|datauri,row,buffer|}\"",
+      "});"
+    ],
+    "description": " - `callback` `{Function}` the callback when finished capturing the window\n - `config` `{String}` or `{Object}` Optional if a String, see `config.format` for valid values.\n   - `format` `{String}` optional the image format used to generate the image. It supports two formats: `png` and `jpeg`. If ignored, it’s `jpeg` by default.\n   - `datatype` `{String}` it supports three types: `raw`, `buffer` and `datauri`. If ignored, it’s `datauri` by default.\n Captures the visible area of the window. To capture the full page, see `win.captureScreenshot`.\n\n The `raw` only contains the Base64 encoded image. But `datauri` contains the mime type headers as well, and it can be directly assigned to `src` of `Image` to load the image."
+  },
+  "win.captureScreenshot(options [, callback])": {
+    "prefix": "nw.win.captureScreenshot(options [, callback])",
+    "body": [
+      "win.captureScreenshot({",
+      "  fullSize: ${1|true,false|},",
+      "  format: \"${2|png,jpeg|}\",",
+      "  // quality: 100, // jpeg only",
+      "  // clip: {",
+      "  //   x: 0,",
+      "  //   y: 0,",
+      "  //   width: window.innerWidth,",
+      "  //   height: window.innerHeight,",
+      "  //   scale: 1",
+      "  // }",
+      "}, (err, base64) => {",
+      "  if (err) {",
+      "    throw new Error(err);",
+      "  }",
+      "  // e.g. To Image.src",
+      "  // const image = new Image();",
+      "  // image.src = \"data:image/jpg;base64,\" + base64;",
+      "",
+      "  // e.g. Save as image file",
+      "  // const fs = require(\"fs\");",
+      "  // const buffer = new Buffer(base64, \"base64\");",
+      "  // fs.writeFileSync('test.png', buffer);",
+      "",
+      "  ${3}",
+      "});"
+    ],
+    "description": " When `callback` is omitted, a Promise is returned and it will resolve with `data` argument of the callback.\n\n - `callback` `{Function}` optional the callback when finished capturing the window. It’s called with:\n   - `err` `null` for success; `{String}` with the error message for failure.\n   - `data` `{String}` base64 encoded image\n - `options` `{Object}`\n   - `fullSize` `{Boolean}` optional Capture the whole page beyond the visible area. Currently the height of captured image is capped at 16384 pixels by Chromium.\n   - `format` `{String}` optional the image format used to generate the image. It supports two formats: `png` and `jpeg`. `png` is the default.\n   - `quality` `{Integer}` optional Compression quality from range [0..100] (jpeg only).\n   - `clip` `{Object}` optional Capture the screenshot of a given region only. The object’s properties are:\n     - `x`: `{Number}` X offset in device independent pixels (dip).\n     - `y`: `{Number}` Y offset in device independent pixels (dip).\n     - `width`: `{Number}` Rectangle width in device independent pixels (dip).\n     - `height`: `{Number}` Rectangle height in device independent pixels (dip).\n     - `scale`: `{Number}` Page scale factor.\n\n Captures the the window. It can be used to capture the full page beyond the visible area.\n\n **This API is experimental and subject to change in the future.**"
+  },
+  "win.setProgressBar(progress)": {
+    "prefix": "nw.win.setProgressBar(progress)",
+    "body": "win.setProgressBar(${1:progress});",
+    "description": " **Linux Only.**\n - `progress` `{Float}` valid values within [0, 1]. Setting to negative value (<0) removes the progress bar.\n\n Only Ubuntu is supported, and you’ll need to specify the application `.desktop` file through `NW_DESKTOP` env. If `NW_DESKTOP` env variable is not found, it uses `nw.desktop` by default."
+  },
+  "win.setBadgeLabel(label)": {
+    "prefix": "nw.win.setBadgeLabel(label)",
+    "body": "win.setBadgeLabel(${1:label});",
+    "description": " **Linux Only.**\n Set the badge label on the window icon in taskbar or dock.\n\n This API is only supported on Ubuntu and the label is restricted to a string number only. You’ll also need to specify the `.desktop` file for your application (see the note on `setProgressBar`)"
+  },
+  "win.eval(frame, script)": {
+    "prefix": "nw.win.eval(frame, script)",
+    "body": "win.eval(${1:frame}, \"${2:script}\");",
+    "description": " - `frame` `{HTMLIFrameElement}` the frame to execute in. If `iframe` is `null`, it assumes in current window / frame.\n - `script` `{String}` the source code of the script to be executed\n Execute a piece of JavaScript in the frame."
+  },
+  "win.evalNWBin(frame, path)": {
+    "prefix": "nw.win.evalNWBin(frame, path)",
+    "body": "win.evalNWBin(${1:frame}, \"${2:path}\");",
+    "description": " - `frame` `{HTMLIFrameElement}` the frame to execute in. If `iframe` is `null`, it assumes in current window / frame.\n - `path` `{String|ArrayBuffer|Buffer}` the path or `Buffer` or `ArrayBuffer` of the binary file generated by `nwjc`\n Load and execute the compiled binary in the frame. See [Protect JavaScript Source Code](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Protect%20JavaScript%20Source%20Code/)."
+  },
+  "win.evalNWBinModule(frame, path, module_path)": {
+    "prefix": "nw.win.evalNWBinModule(frame, path, module_path)",
+    "body": "win.evalNWBinModule(${1:frame}, \"${2:path}\", \"${3:module_path}\");",
+    "description": " **This API is subject to change in future versions as we’re exploring ways to support this feature better. [Discuss here](https://github.com/nwjs/nw.js/issues/6303).**\n\n - `frame` `{HTMLIFrameElement}` the frame to execute in. If `iframe` is `null`, it assumes in current window / frame.\n - `path` `{String|ArrayBuffer|Buffer}` the path or `Buffer` or `ArrayBuffer` of the binary file generated by `nwjc`\n - `module_path` `{String}` the module URL related to the current document. It will be used to [resolve the module specifier](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier).\n Load and execute the compiled binary for Modules in the frame. The binary should be compiled with `nwjc --nw-module`. The following code will load lib.bin as module and other modules can refer to it with something like `import * from \"./lib.js\"`:\n ```js\n nw.Window.get().evalNWBinModule(null, 'lib.bin', 'lib.js');\n ```"
+  },
+  "win.removeAllListeners([eventName])": {
+    "prefix": "nw.win.removeAllListeners([eventName])",
+    "body": "win.removeAllListeners(${1});",
+    "description": " Removes all listeners, or those of the specified `eventName`."
+  },
+  "win.on(\"close\", () => {})": {
+    "prefix": "win.on(\"close\", () => {})",
+    "body": [
+      "win.on(\"close\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " The `close` event is a special event that will affect the result of the `Window.close()` function. If developer is listening to the `close` event of a window, the `Window.close()` emit the `close` event without closing the window.\n\n Usually you would do some shutdown work in the callback of `close` event, and then call `this.close(true)` to really close the window, which will not be caught again. Forgetting to add true when calling `this.close()` in the callback will result in infinite loop.\n\n And if the shutdown work takes some time, users may feel that the app is exiting slowly, which is bad experience, so you could just hide the window in the `close` event before really closing it to make a smooth user experience.\n\n **Mac**\n On Mac, there is an argument passed to the callback indicating whether it’s being closed by ⌘+Q. It will be set to string `quit` if that’s true, otherwise `undefined`."
+  },
+  "win.on(\"closed\", () => {})": {
+    "prefix": "win.on(\"closed\", () => {})",
+    "body": [
+      "win.on(\"closed\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " The `closed` event is emitted after the corresponding window is closed. Normally you will not be able to get this event since after the window is closed all js objects will be released. But it is useful when listening to the window’s events in another window, whose objects will not be released."
+  },
+  "win.on(\"loading\", () => {})": {
+    "prefix": "win.on(\"loading\", () => {})",
+    "body": [
+      "win.on(\"loading\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when the window starts to reload, normally you cannot catch this event because usually it’s emitted before you actually setup the callback.\n\n The only situation that you can catch this event is when you refresh the window and listen to this event in another window."
+  },
+  "win.on(\"loaded\", () => {})": {
+    "prefix": "win.on(\"loaded\", () => {})",
+    "body": [
+      "win.on(\"loaded\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when the window is fully loaded, this event behaves the same with `window.onload`, but doesn’t rely on the DOM."
+  },
+  "win.on(\"document-start\", (frame) => {})": {
+    "prefix": "win.on(\"document-start\", (frame) => {})",
+    "body": [
+      "win.on(\"document-start\", function (frame) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " - `frame` `{HTMLIFrameElement}` is the iframe object, or `null` if the event is for the window.\n Emitted when the document object in this window or a child iframe is available, after all files are loaded, but before DOM is constructed or any script is run.\n It will not be fired on the new window being created with nw.Window.open(): the callback of that function will be fired at the same point of this event.\n\n See `inject_js_start` in [Manifest-format](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#inject_js_start)."
+  },
+  "win.on(\"document-end\", (frame) => {})": {
+    "prefix": "win.on(\"document-end\", (frame) => {})",
+    "body": [
+      "win.on(\"document-end\", function (frame) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " - `frame` `{HTMLIFrameElement}` is the iframe object, or `null` if the event is for the window.\n Emitted when the document object in this window or a child iframe is `unloaded`, but before the onunload event is emitted.\n\n See `inject_js_end` in [Manifest-format](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#inject_js_start)."
+  },
+  "win.on(\"focus\", () => {})": {
+    "prefix": "win.on(\"focus\", () => {})",
+    "body": [
+      "win.on(\"focus\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window gets focus."
+  },
+  "win.on(\"blur\", () => {})": {
+    "prefix": "win.on(\"blur\", () => {})",
+    "body": [
+      "win.on(\"blur\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window loses focus."
+  },
+  "win.on(\"minimize\", () => {})": {
+    "prefix": "win.on(\"minimize\", () => {})",
+    "body": [
+      "win.on(\"minimize\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window is minimized."
+  },
+  "win.on(\"restore\", () => {})": {
+    "prefix": "win.on(\"restore\", () => {})",
+    "body": [
+      "win.on(\"restore\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window is restored from minimize, maximize and fullscreen state."
+  },
+  "win.on(\"maximize\", () => {})": {
+    "prefix": "win.on(\"maximize\", () => {})",
+    "body": [
+      "win.on(\"maximize\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window is maximized."
+  },
+  "win.on(\"move\", (x, y) => {})": {
+    "prefix": "win.on(\"move\", (x, y) => {})",
+    "body": [
+      "win.on(\"move\", function (x, y) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted after window is moved. The callback is called with 2 arguments: `(x, y)` for the new location of the left / top corner of the window."
+  },
+  "win.on(\"resize\", (width, height) => {})": {
+    "prefix": "win.on(\"resize\", (width, height) => {})",
+    "body": [
+      "win.on(\"resize\", function (width, height) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted after window is resized. The callback is called with 2 arguments: `(width, height)` for the new size of the window."
+  },
+  "win.on(\"enter-fullscreen\", () => {})": {
+    "prefix": "win.on(\"enter-fullscreen\", () => {})",
+    "body": [
+      "win.on(\"enter-fullscreen\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window enters fullscreen state."
+  },
+  "win.on(\"leave-fullscreen\", () => {})": {
+    "prefix": "win.on(\"leave-fullscreen\", () => {})",
+    "body": [
+      "win.on(\"leave-fullscreen\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window leaves fullscreen state."
+  },
+  "win.on(\"zoom\", (newZoomLevel) => {})": {
+    "prefix": "win.on(\"zoom\", (newZoomLevel) => {})",
+    "body": [
+      "win.on(\"zoom\", function (newZoomLevel) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted when window zooming changed. It has a parameter indicating the new zoom level. See `win.zoom()` method for the parameter’s value definition."
+  },
+  "win.on(\"capturepagedone\", (data) => {})": {
+    "prefix": "win.on(\"capturepagedone\", (data) => {})",
+    "body": [
+      "win.on(\"capturepagedone\", function (data) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted after the capturePage method is called and image data is ready. See `win.capturePage()` callback function for the parameter’s value definition."
+  },
+  "win.on(\"devtools-opened\", (url) => {})": {
+    "prefix": "win.on(\"devtools-opened\", (url) => {})",
+    "body": [
+      "win.on(\"devtools-opened\", function (url) {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " See `win.showDevTools()` method for more details."
+  },
+  "win.on(\"devtools-closed\", () => {})": {
+    "prefix": "win.on(\"devtools-closed\", () => {})",
+    "body": [
+      "win.on(\"devtools-closed\", function () {",
+      "  ${1}",
+      "});"
+    ],
+    "description": " Emitted after Devtools is closed.\n\n See `win.closeDevTools()` method for more details."
+  },
+  "win.on(\"new-win-policy\", (frame, url, policy) => {})": {
+    "prefix": "win.on(\"new-win-policy\", (frame, url, policy) => {})",
+    "body": [
+      "win.on(\"new-win-policy\", function (frame, url, policy) {",
+      "  // do not open the window",
+      "  // policy.ignore();",
+      "  // and open it in external browser",
+      "  // nw.Shell.openExternal(url);",
+      "  ${1}",
+      "});"
+    ],
+    "description": " - `frame` `{HTMLIFrameElement}` is the object of the child iframe where the request is from, or `null` if it’s from the top window.\n - `url` `{String}` is the address of the requested link\n - `policy` `{Object}` is an object with the following methods:\n   - `ignore()` : ignore the request, navigation won’t happen.\n   - `forceCurrent()` : force the link to be opened in the same frame\n   - `forceDownload()` : force the link to be a downloadable, or open by external program\n   - `forceNewWindow()` : force the link to be opened in a new window\n   - `forceNewPopup()` : force the link to be opened in a new popup window\n   - `setNewWindowManifest(m)` : control the options for the new popup window. The object `m` is in the same format as the Window subfields in manifest format.\n\n Emitted when a new window is requested from this window or a child iframe. You can call `policy.*` methods in the callback to change the default behavior of opening new windows."
+  },
+  "win.on(\"navigation\", (frame, url, policy) => {})": {
+    "prefix": "win.on(\"navigation\", (frame, url, policy) => {})",
+    "body": [
+      "win.on(\"navigation\", function (frame, url, policy) {",
+      "  // do not open the window",
+      "  // policy.ignore();",
+      "  ${1}",
+      "});"
+    ],
+    "description": " - `frame` `{HTMLIFrameElement}` is the object of the child iframe where the request is from, or `null` if it’s from the top window.\n - `url` `{String}` is the address of the requested link\n - `policy` `{Object}` is an object with the following methods:\n   - `ignore()` : ignore the request, navigation won’t happen.\n\n Emitted when navigating to another page. Similar to `new-win-policy`, you can call `policy.ignore()` within the callback to ignore the navigation."
+  },
+  "Hide window instead of close": {
+    "prefix": "nw-hideWindowInsteadOfClose",
+    "body": [
+      "win.on(\"close\", function() {",
+      "  this.hide();",
+      "});",
+      "// Close win forcefully",
+      "// win.close(true);"
+    ],
+    "description": " The normal close behavior just hides the window, use `win.close(true)` to close it forcefully"
+  },
+  "Live reload current window": {
+    "prefix": "nw-liveReload",
+    "body": [
+      "/**",
+      " * Live reload",
+      " */",
+      "const fs = require(\"fs\");",
+      "const appPath = \"${1:./}\";",
+      "const reloadWatcher = fs.watch(appPath, { recursive: true }, function () {",
+      "  reloadWatcher.close();",
+      "  // Reload NodeJS modules",
+      "  for (var i in require.cache) {",
+      "    delete require.cache[i];",
+      "  }",
+      "  // Reload window",
+      "  const win = nw.Window.get();",
+      "  win.menu = null;",
+      "  win.reload();",
+      "});"
+    ],
+    "description": " Reload current window automatically on file changes."
+  },
+  "Live reload app [bg_script]": {
+    "prefix": "nw-liveReloadApp",
+    "body": [
+      "/**",
+      " * Relaunch App (Windows OS works)",
+      " * @see https://github.com/nwjs/nw.js/issues/149#issuecomment-47929589",
+      " */",
+      "function relaunchApp() {",
+      "  if (process.platform === \"darwin\") {",
+      "    chrome.runtime.reload();",
+      "  } else {",
+      "    const child_process = require(\"child_process\");",
+      "    const child = child_process.spawn(process.execPath, [], { detached: true });",
+      "    child.unref();",
+      "    nw.App.quit();",
+      "  }",
+      "}",
+      "",
+      "/**",
+      " * Live reload",
+      " * @file bg_script.js",
+      " */",
+      "const fs = require(\"fs\");",
+      "const path = require(\"path\");",
+      "const appPath = \"${1:./}\";",
+      "const bgScripts = [${2}].map((file) => path.resolve(file));",
+      "function isBgScript(file) {",
+      "  file = path.resolve(file);",
+      "  for (let i = 0; i < bgScripts.length; i++) {",
+      "    if (file.indexOf(bgScripts[i]) > -1) return true;",
+      "  }",
+      "  return false;",
+      "}",
+      "const reloadWatcher = fs.watch(",
+      "  appPath,",
+      "  { recursive: true },",
+      "  (eventType, filename) => {",
+      "    // If bg_scripts changed, relaunch app.",
+      "    if (isBgScript(filename)) {",
+      "      relaunchApp();",
+      "    } else {",
+      "      // Reload NodeJS modules",
+      "      for (var i in require.cache) {",
+      "        delete require.cache[i];",
+      "      }",
+      "      // Reload all windows",
+      "      nw.Window.getAll((winList) => {",
+      "        winList.forEach((win) => {",
+      "          win.menu = null;",
+      "          win.reload();",
+      "        });",
+      "      });",
+      "    }",
+      "  }",
+      ");",
+      "function closeWatcher() {",
+      "  reloadWatcher.close();",
+      "}"
+    ],
+    "description": "**bg_script.js**\n Reload all NW.js windows automatically on renderer file changes, and relaunch app when bg_scripts changed."
+  },
+  "Get current screen": {
+    "prefix": "nw-getCurrentScreen",
+    "body": [
+      "function getCurrentScreen() {",
+      "  for (let screen of nw.Screen.screens) {",
+      "    if (",
+      "      screen.work_area.x === window.screen.availLeft &&",
+      "      screen.work_area.y === window.screen.availTop",
+      "    )",
+      "      return screen;",
+      "  }",
+      "}"
+    ],
+    "description": " If you have multiple monitors, this function can get the current screen."
+  },
+  "Open new window": {
+    "prefix": "nw-openWindow",
+    "body": "nw.Window.open(\"${1:url}\");",
+    "description": " Open URL with new window."
+  },
+  "Open default browser": {
+    "prefix": "nw-openBrowser",
+    "body": "nw.Shell.openExternal(\"${1:url}\");",
+    "description": " Open URL with default browser."
+  },
+  "Open file": {
+    "prefix": "nw-openFile",
+    "body": "nw.Shell.openItem(\"${1:file_path}\");",
+    "description": " Open a file with default application."
+  },
+  "Open file manager": {
+    "prefix": "nw-openFileManager",
+    "body": "nw.Shell.showItemInFolder(\"${1:file_path}\");",
+    "description": " Show a file in parent folder with file manager."
+  },
+  "Relaunch app [Windows OS]": {
+    "prefix": "nw-relaunchApp",
+    "body": [
+      "/**",
+      " * Relaunch App (Windows OS works)",
+      " * @see https://github.com/nwjs/nw.js/issues/149#issuecomment-47929589",
+      " */",
+      "function relaunchApp() {",
+      "  if (process.platform === 'darwin') {",
+      "    chrome.runtime.reload();",
+      "  } else {",
+      "    const child_process = require(\"child_process\");",
+      "    const child = child_process.spawn(process.execPath, [], { detached: true });",
+      "    child.unref();",
+      "    nw.App.quit();",
+      "  }",
+      "}"
+    ],
+    "description": " Relaunch App [Windows OS]"
+  },
+  "Create a menubar": {
+    "prefix": "nw-menubar",
+    "body": [
+      "function createMenu(items, option = { type: \"contextmenu\" }) {",
+      "  const menu = new nw.Menu(option);",
+      "  items.forEach((item) => {",
+      "    menu.append(new nw.MenuItem(item));",
+      "  });",
+      "  return menu;",
+      "}",
+      "const menu = createMenu(",
+      "  [",
+      "    {",
+      "      label: \"File\",",
+      "      submenu: createMenu([",
+      "        {",
+      "          label: \"${1:Item Full Fields}\",",
+      "          type: \"${2|normal,checkbox,separator|}\",",
+      "          icon: \"${3:img/icon.png}\",",
+      "          tooltip: \"${4}\",",
+      "          enabled: ${5|true,false|},",
+      "          checked: ${6|false,true|},",
+      "          key: \"${7:z}\",",
+      "          modifiers: \"${8:ctrl+alt}\",",
+      "          click() {",
+      "            ${9:console.log(\"Item Full Fields click callback\");}",
+      "          },",
+      "        },",
+      "        {",
+      "          label: \"Item Simple\",",
+      "          click() {",
+      "            console.log(\"Item Simple click callback\");",
+      "          },",
+      "        },",
+      "        {",
+      "          type: \"separator\",",
+      "        },",
+      "        {",
+      "          label: \"Exit\",",
+      "          click() {",
+      "            nw.App.quit();",
+      "          },",
+      "        },",
+      "      ]),",
+      "    },",
+      "    {",
+      "      label: \"Help\",",
+      "      submenu: createMenu([",
+      "        {",
+      "          label: \"About\",",
+      "          click() {",
+      "            alert(\"Created by NW.js Snippets.\");",
+      "          },",
+      "        },",
+      "      ])",
+      "    },",
+      "  ],",
+      "  { type: \"menubar\" }",
+      ");",
+      "nw.Window.get().menu = menu;"
+    ],
+    "description": " Create a menubar."
+  },
+  "Create a contextmenu": {
+    "prefix": "nw-contextmenu",
+    "body": [
+      "function createMenu(items, option = { type: \"contextmenu\" }) {",
+      "  const menu = new nw.Menu(option);",
+      "  items.forEach((item) => {",
+      "    menu.append(new nw.MenuItem(item));",
+      "  });",
+      "  return menu;",
+      "}",
+      "const menu = createMenu(",
+      "  [",
+      "    {",
+      "      label: \"${1:Item Full Fields}\",",
+      "      type: \"${2|normal,checkbox,separator|}\",",
+      "      icon: \"${3:img/icon.png}\",",
+      "      tooltip: \"${4}\",",
+      "      enabled: ${5|true,false|},",
+      "      checked: ${6|false,true|},",
+      "      key: \"${7}\",",
+      "      modifiers: \"${8}\",",
+      "      click() {",
+      "        ${9:console.log(\"Item Full Fields click callback\");}",
+      "      },",
+      "    },",
+      "    {",
+      "      label: \"Item Simple\",",
+      "      click() {",
+      "        console.log(\"Item Simple click callback\");",
+      "      },",
+      "    },",
+      "    {",
+      "      type: \"separator\",",
+      "    },",
+      "    {",
+      "      label: \"Submenu\",",
+      "      submenu: createMenu([",
+      "        {",
+      "          label: \"About\",",
+      "          click() {",
+      "            alert(\"Created by NW.js Snippets.\");",
+      "          },",
+      "        },",
+      "      ]),",
+      "    },",
+      "  ],",
+      "  { type: \"contextmenu\" }",
+      ");",
+      "window.addEventListener(\"contextmenu\", e => {",
+      "  e.preventDefault();",
+      "  menu.popup(e.clientX, e.clientY);",
+      "  return false;",
+      "});"
+    ],
+    "description": " Create a contextmenu."
+  },
+  "Create a tray [bg_script]": {
+    "prefix": "nw-tray",
+    "body": [
+      "/**",
+      " * Create a tray",
+      " * @file bg_script.js",
+      " */",
+      "function createMenu(items, option = { type: \"contextmenu\" }) {",
+      "  const menu = new nw.Menu(option);",
+      "  items.forEach((item) => {",
+      "    menu.append(new nw.MenuItem(item));",
+      "  });",
+      "  return menu;",
+      "}",
+      "const tray = new nw.Tray({",
+      "  title: \"${1:title}\",",
+      "  tooltip: \"${2:tooltip}\",",
+      "  icon: \"${3:img/icon.png}\",",
+      "  alticon: \"${4:img/alticon.png}\",",
+      "  iconsAreTemplates: ${5|true,false|},",
+      "  menu: createMenu([",
+      "    {",
+      "      label: \"Submenu\",",
+      "      submenu: createMenu([",
+      "        {",
+      "          label: \"Item Full Fields\",",
+      "          type: \"normal\",",
+      "          icon: \"img/menuicon.png\",",
+      "          tooltip: \"\",",
+      "          enabled: true,",
+      "          checked: false,",
+      "          key: \"\",",
+      "          modifiers: \"\",",
+      "          click() {",
+      "            console.log(\"Item Full Fields click callback\");",
+      "          },",
+      "        },",
+      "      ]),",
+      "    },",
+      "    {",
+      "      label: \"About\",",
+      "      click() {",
+      "        alert(\"Created by NW.js Snippets.\");",
+      "      },",
+      "    },",
+      "    {",
+      "      type: \"separator\",",
+      "    },",
+      "    {",
+      "      label: \"Exit\",",
+      "      click() {",
+      "        nw.App.quit();",
+      "      },",
+      "    },",
+      "  ]),",
+      "});",
+      "tray.on(\"click\", () => {",
+      "  const win = nw.Window.get();",
+      "  win.show();",
+      "  win.restore();",
+      "  win.focus();",
+      "});",
+      "function removeTray() {",
+      "  tray.remove();",
+      "  tray = null;",
+      "}"
+    ],
+    "description": "**bg_script.js**\n Create a tray"
+  },
+  "Register global hot key [bg_script]": {
+    "prefix": "nw-globalHotKey",
+    "body": [
+      "/**",
+      " * Register global keyboard shortcuts to the system",
+      " * @file bg_script.js",
+      " */",
+      "const shortcutOptions = [",
+      "  {",
+      "    key: \"${1:Ctrl+Shift+A}\",",
+      "    // The active callback of a Shortcut. It will be called when user presses the shortcut.",
+      "    active: function() {",
+      "      ${2:console.log(`Global desktop keyboard shortcut: \\${this.key\\} active.`);}",
+      "    },",
+      "    // The failed callback of a Shortcut. It will be called when application passes an invalid key , or failed to register the key.",
+      "    failed: function(msg) {",
+      "      console.log(`:(, fail to register or couldn't parse the key ${this.key}.`, msg);",
+      "    },",
+      "  },",
+      "];",
+      "shortcutOptions.forEach(option => {",
+      "  const shortcut = new nw.Shortcut(option);",
+      "  nw.App.registerGlobalHotKey(shortcut);",
+      "});",
+    ],
+    "description": "**bg_script.js**\n Register global keyboard shortcuts to the system."
+  },
+}

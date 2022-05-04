@@ -1,0 +1,42 @@
+{
+  "<input type=\"file\" nwdirectory>": {
+    "prefix": "input[nwdirectory][nwdirectorydesc]",
+    "body": "<input type=\"file\" nwdirectory nwdirectorydesc=\"${1}\">",
+    "description": "<input>\n Set the description of the title in the file dialog for `nwdirectory`. Default is `Select Folder`.\n `nwdirectorydesc` set the description of the title in the file dialog for nwdirectory. Default is Select Folder."
+  },
+  "<input type=\"file\" nwsaveas>": {
+    "prefix": "input[nwsaveas]",
+    "body": "<input type=\"file\" nwsaveas=\"${1:filename.txt}\">",
+    "description": "<input>\n `nwsaveas` will open a ‘Save as’ dialog, which lets user enter the path of a file. It’s possible to select a non-existing file, which is different from the default file input tag."
+  },
+  "nwworkingdir": {
+    "prefix": "nwworkingdir",
+    "body": "nwworkingdir",
+    "description": "<input>\n With `nwworkingdir`, the file dialog starts in the given directory when the element is activated."
+  },
+  "nwdisable": {
+    "prefix": "nwdisable",
+    "body": "nwdisable",
+    "description": "<iframe>\n Make the frame and subframes normal frames.\n This attribute doesn’t prevent the page in normal frames accessing its parent and top frames. Then they can still get access to Node.js APIs. So usually you may want to use this attribute with `nwfaketop` togather."
+  },
+  "nwfaketop": {
+    "prefix": "nwfaketop",
+    "body": "nwfaketop",
+    "description": "<iframe>\n Prevent web page in the frame accessing the real `window.parent` or `window.top`. They will get the faked parent and top, which is its own `window` object of the frame. Subframes will also be affected.\n This attribute is usually used with `nwdisable`."
+  },
+  "nwUserAgent": {
+    "prefix": "nwUserAgent",
+    "body": "nwUserAgent=\"${1}\"",
+    "description": "<iframe>\n Override the default user-agent when loading the web page in the frame and sub frames. See [user-agent](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#user-agent) in manifest for details."
+  },
+  "<webview>": {
+    "prefix": "webview",
+    "body": "<webview id=\"${1:foo}\" src=\"${2:http://www.google.com/}\" style=\"width:${3:640}px; height:${4:480}px\"></webview>",
+    "description": "<webview>\n Use the `<webview>` tag to embed “guest” content (such as web pages) in your app. Different from the `<iframe>`, the `<webview>` runs in a separate process than your app; it doesn’t have the same permissions as your app and all interactions between your app and embedded content will be asynchronous. This keeps your app safe from the embedded content.\n\n **Loading local files in webview**\n Add the following permission to the manifest:\n ```json\n \"webview\": {\n   \"partitions\": [\n     {\n       \"name\": \"trusted\",\n       \"accessible_resources\": [\"<all_urls>\"]\n     }\n   ]\n }\n ```\n and add `partition=\"trusted\"` attribute to the webview tag."
+  },
+  "allownw": {
+    "prefix": "allownw",
+    "body": "allownw",
+    "description": "<webview>\n Node.js support in webview\n To enable Node.js support in WebView, add the `allownw` attribute to the webview tag. Then Node.js will be turned on, no matter it loads local file or remote site. Use this feature with caution because webview is normally supposed to load untrusted contents."
+  },
+}

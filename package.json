@@ -1,0 +1,42 @@
+{
+  "name": "vscode-nwjs-snippets",
+  "displayName": "NW.js Snippets",
+  "description": "NW.js snippets created by ssnangua",
+  "publisher": "ssnangua",
+  "version": "0.0.1",
+  "scripts": {
+    "package": "npx vsce package",
+    "publish": "npx vsce publish"
+  },
+  "icon": "images/NW.js.png",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssnangua/vscode-nwjs-snippets"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/package.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/js.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "css",
+        "path": "./snippets/css.code-snippets"
+      }
+    ]
+  }
+}

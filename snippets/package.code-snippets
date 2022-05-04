@@ -1,0 +1,125 @@
+{
+  "Create package.json": {
+    "prefix": "nw-package-json",
+    "body": [
+      "{",
+      "  \"name\": \"${1:package-name}\",",
+      "  \"description\": \"${2}\",",
+      "  \"version\": \"${3:0.0.1}\",",
+      "  \"publisher\": \"${4}\",",
+      "  \"main\": \"${5:URL, *.html, *.js}\",",
+      "  \"window\": {",
+      "    \"id\": \"${6}\",",
+      "    \"title\": \"${7}\",",
+      "    \"width\": ${8:814},",
+      "    \"height\": ${9:638},",
+      "    \"icon\": \"${10}\",",
+      "    \"position\": \"${11|center,null,mouse|}\",",
+      "    \"always_on_top\": false,",
+      "    \"frame\": true,",
+      "    \"transparent\": false,",
+      "    \"fullscreen\": false,",
+      "    \"show\": true,",
+      "    \"show_in_taskbar\": true,",
+      "    \"min_width\": 0,",
+      "    \"min_height\": 0,",
+      "    \"max_width\": 0,",
+      "    \"max_height\": 0,",
+      "    \"resizable\": true,",
+      "    \"as_desktop\": false,",
+      "    \"visible_on_all_workspaces\": false,",
+      "    \"kiosk\": false",
+      "  },",
+      "  \"bg-script\": null,",
+      "  \"nodejs\": true,",
+      "  \"node-main\": null,",
+      "  \"domain\": null,",
+      "  \"node-remote\": \"<all_urls>\",",
+      "  \"inject_js_start\": null,",
+      "  \"inject_js_end\": null,",
+      "  \"webkit\": {",
+      "    \"double_tap_to_zoom_enabled\": false,",
+      "    \"plugin\": true",
+      "  },",
+      "  \"user-agent\": null,",
+      "  \"chromium-args\": null,",
+      "  \"js-flags\": null,",
+      "  \"additional_trust_anchors\": null,",
+      "  \"dom_storage_quota\": null,",
+      "  \"help\": \"https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/\",",
+      "  \"help-zh_CN\": \"https://nwjs-cn.readthedocs.io/zh_CN/latest/References/Manifest%20Format/index.html\"",
+      "}"
+    ],
+    "description": "Create Package.json"
+  },
+  "--url": {
+    "prefix": "nw-cmd--url",
+    "body": "--url",
+    "description": "Load URL with the default app: `--url=http://nwjs.io`"
+  },
+  "--mixed-context": {
+    "prefix": "nw-cmd--mixed-context",
+    "body": "--mixed-context",
+    "description": "Run NW.js in [Mixed Context Mode](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/JavaScript%20Contexts%20in%20NW.js/#mixed-context-mode) instead of Separate Context Mode."
+  },
+  "--nwapp": {
+    "prefix": "nw-cmd--nwapp",
+    "body": "--nwapp",
+    "description": "An alternative way to specify the path of the app. This parameter is especially useful when [testing with ChromeDriver](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Test%20with%20ChromeDriver/)."
+  },
+  "--user-data-dir": {
+    "prefix": "nw-cmd--user-data-dir",
+    "body": "--user-data-dir",
+    "description": "Specify the data directory for your app, which contains the stored data, caches and crash dumps etc. By default the data directory is in following directories according to your platform:\n - Windows: `%LOCALAPPDATA%/<name-in-manifest>/`\n - Mac: `~/Library/Application Support/<name-in-manifest>/`\n - Linux: `~/.config/<name-in-manifest>`\n Where `<name-in-manifest>` is the name field in [manifest](https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/#name)."
+  },
+  "--disable-devtools": {
+    "prefix": "nw-cmd--disable-devtools",
+    "body": "--disable-devtools",
+    "description": "Disable user's access to devtools feature in SDK build."
+  },
+  "--enable-node-worker": {
+    "prefix": "nw-cmd--enable-node-worker",
+    "body": "--enable-node-worker",
+    "description": "Enable the Node.js integration in Web Workers. This will help you offload CPU hogging tasks with new threads, while [exchange large amount of data](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) with DOM efficiently with the [structured clone](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm) algorithm.\n Please note that binary modules of Node.js need to be thread-safe to be used in this way. We've made modifications to Node.js core to make sure core APIs are thread-safe, while we can not promise this with 3rd party binary modules. Pure JS modules are thread safe as long as they depends on thread-safe modules only. And there shouldn't be any side effect when the feature is not turned on."
+  },
+  "--disable-raf-throttling": {
+    "prefix": "nw-cmd--disable-raf-throttling",
+    "body": "--disable-raf-throttling",
+    "description": "When it's used, requestAnimationFrame() callback will continue to fire when window is minimized or hidden. It's pretty useful for game developer. When the argument is not used, it behaves in the same way as Chrome browser and has no side effects."
+  },
+  "--disable-cookie-encryption": {
+    "prefix": "nw-cmd--disable-cookie-encryption",
+    "body": "--disable-cookie-encryption",
+    "description": "By default, the cookie store on disk is encrypted in Chromium. Use this switch to disable the encryption for testing purpose (e.g. sharing the cookie store between different systems)."
+  },
+  "--disable-crash-handler": {
+    "prefix": "nw-cmd--disable-crash-handler",
+    "body": "--disable-crash-handler=true",
+    "description": "Disable the crash handler process for single process mode. NOTE: you should explicitly set it to `true`. When using it and `--single-process` together, there will be only one NW process for your application. The crash dumping feature will be disabled with this switch. This switch must be put in the command line (not in package.json) to be effective."
+  },
+  "--enable-gcm": {
+    "prefix": "nw-cmd--enable-gcm",
+    "body": "--enable-gcm",
+    "description": "Enable the chrome.gcm API."
+  },
+  "--enable-transparent-visuals": {
+    "prefix": "nw-cmd--enable-transparent-visuals",
+    "body": "--enable-transparent-visuals",
+    "description": "Related to the transparent window feature. See [Transparent Window](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Transparent%20Window/) for details."
+  },
+  "--disable-transparency": {
+    "prefix": "nw-cmd--disable-transparency",
+    "body": "--disable-transparency",
+    "description": "Related to the transparent window feature. See [Transparent Window](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Transparent%20Window/) for details."
+  },
+  "--disable-gpu": {
+    "prefix": "nw-cmd--disable-gpu",
+    "body": "--disable-gpu",
+    "description": "Related to the transparent window feature. See [Transparent Window](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Transparent%20Window/) for details."
+  },
+  "--force-cpu-draw": {
+    "prefix": "nw-cmd--force-cpu-draw",
+    "body": "--force-cpu-draw",
+    "description": "Related to the transparent window feature. See [Transparent Window](https://nwjs.readthedocs.io/en/latest/For%20Users/Advanced/Transparent%20Window/) for details."
+  },
+}
