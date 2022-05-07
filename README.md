@@ -46,6 +46,7 @@ All js snippets are start with `nw`:
 | `nw-relaunchApp` | Relaunch app |
 | `nw-getCurrentScreen` | Get current screen |
 | `nw-hideWindowInsteadOfClose` | Hide window instead of close |
+| `nw-draggable` | Drag window by element |
 
 ## *.css* Snippets
 
