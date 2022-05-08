@@ -1822,7 +1822,7 @@
       ");",
       "window.addEventListener(\"contextmenu\", e => {",
       "  e.preventDefault();",
-      "  menu.popup(e.clientX, e.clientY);",
+      "  menu.popup(e.screenX, e.screenY);",
       "  return false;",
       "});"
     ],
