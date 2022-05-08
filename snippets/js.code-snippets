@@ -1822,7 +1822,8 @@
       ");",
       "window.addEventListener(\"contextmenu\", e => {",
       "  e.preventDefault();",
-      "  menu.popup(e.screenX, e.screenY);",
+      "  // menu.popup(e.screenX, e.screenY);",
+      "  menu.popup(e.clientX, e.clientY);",
       "  return false;",
       "});"
     ],
