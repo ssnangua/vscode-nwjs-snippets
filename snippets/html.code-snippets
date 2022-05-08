@@ -39,4 +39,9 @@
     "body": "allownw",
     "description": "<webview>\n Node.js support in webview\n To enable Node.js support in WebView, add the `allownw` attribute to the webview tag. Then Node.js will be turned on, no matter it loads local file or remote site. Use this feature with caution because webview is normally supposed to load untrusted contents."
   },
+  "Module script": {
+    "prefix": "script:src[type=module]",
+    "body": "<script src=\"${1}\" type=\"module\"></script>",
+    "description": "<script>\n Insert a script element with `type=\"module\"` attribute."
+  },
 }

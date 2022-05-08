@@ -47,6 +47,9 @@ All js snippets are start with `nw`:
 | `nw-getCurrentScreen` | Get current screen |
 | `nw-hideWindowInsteadOfClose` | Hide window instead of close |
 | `nw-draggable` | Drag window by element |
+| `nw-getScript` | Get script |
+| `nw-ini` | Read and write .ini files. |
+| `nw-json` | Read and write .json files. |
 
 ## *.css* Snippets
 
@@ -63,6 +66,7 @@ All js snippets are start with `nw`:
 | `input[nwdirectory][nwdirectorydesc]` | `<input type="file" nwdirectory nwdirectorydesc="">` |
 | `input[nwsaveas]` | `<input type="file" nwsaveas="">` |
 | `nwworkingdir` | `nwworkingdir` |
+| `script:src[type=module]` | `<script src="" type="module"></script>` |
 
 ### \<iframe\>
 
