@@ -3,7 +3,7 @@
   "displayName": "NW.js Snippets",
   "description": "NW.js snippets created by ssnangua",
   "publisher": "ssnangua",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "scripts": {
     "package": "npx vsce package",
     "publish": "npx vsce publish"
@@ -27,6 +27,10 @@
       },
       {
         "language": "javascript",
+        "path": "./snippets/js.code-snippets"
+      },
+      {
+        "language": "typescript",
         "path": "./snippets/js.code-snippets"
       },
       {

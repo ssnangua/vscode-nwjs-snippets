@@ -2026,4 +2026,17 @@
     ],
     "description": " Read and write .json files, usually for user data."
   },
+  "Drop files": {
+    "prefix": "nw-drop-files",
+    "body": [
+      "window.addEventListener(\"dragover\", (e) => e.preventDefault());",
+      "window.addEventListener(\"drop\", (e) => e.preventDefault());",
+      "${1:window}.addEventListener(\"drop\", (e) => {",
+      "  const files = Array.from(e.dataTransfer.files);",
+      "  const filePaths = files.map((file) => file.path);",
+      "  ${2}",
+      "});"
+    ],
+    "description": " Get the dropped files."
+  },
 }
