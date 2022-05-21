@@ -50,6 +50,7 @@ All js snippets are start with `nw`:
 | `nw-getScript` | Get script |
 | `nw-ini` | Read and write .ini files. |
 | `nw-json` | Read and write .json files. |
+| `nw-drop-files` | Get the dropped files. |
 
 ## *.css* Snippets
 
