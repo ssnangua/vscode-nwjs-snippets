@@ -2029,8 +2029,15 @@
   "Drop files": {
     "prefix": "nw-drop-files",
     "body": [
-      "window.addEventListener(\"dragover\", (e) => e.preventDefault());",
-      "window.addEventListener(\"drop\", (e) => e.preventDefault());",
+      "const preventDefault = (e) => {",
+      "  e.preventDefault();",
+      "  e.stopPropagation();",
+      "  return false;",
+      "};",
+      "window.addEventListener(\"dragenter\", preventDefault);",
+      "window.addEventListener(\"dragover\", preventDefault);",
+      "window.addEventListener(\"dragleave\", preventDefault);",
+      "window.addEventListener(\"drop\", preventDefault);",
       "${1:window}.addEventListener(\"drop\", (e) => {",
       "  const files = Array.from(e.dataTransfer.files);",
       "  const filePaths = files.map((file) => file.path);",
