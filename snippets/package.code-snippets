@@ -7,7 +7,7 @@
       "  \"description\": \"${2}\",",
       "  \"version\": \"${3:0.0.1}\",",
       "  \"publisher\": \"${4}\",",
-      "  \"main\": \"${5:URL, *.html, *.js}\",",
+      "  \"main\": \"${5:*.html, *.js, URL}\",",
       "  \"window\": {",
       "    \"id\": \"${6}\",",
       "    \"title\": \"${7}\",",
@@ -32,9 +32,8 @@
       "  },",
       "  \"bg-script\": null,",
       "  \"nodejs\": true,",
-      "  \"node-main\": null,",
-      "  \"domain\": null,",
       "  \"node-remote\": \"<all_urls>\",",
+      "  \"domain\": null,",
       "  \"inject_js_start\": null,",
       "  \"inject_js_end\": null,",
       "  \"webkit\": {",
@@ -47,7 +46,7 @@
       "  \"additional_trust_anchors\": null,",
       "  \"dom_storage_quota\": null,",
       "  \"help\": \"https://nwjs.readthedocs.io/en/latest/References/Manifest%20Format/\",",
-      "  \"help-zh_CN\": \"https://nwjs-cn.readthedocs.io/zh_CN/latest/References/Manifest%20Format/index.html\"",
+      "  \"help-zh\": \"https://nwjs-docs.readthedocs.io/zh/latest/References/Manifest%20Format/\"",
       "}"
     ],
     "description": "Insert full manifest fields to package.json"
