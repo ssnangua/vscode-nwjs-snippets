@@ -2046,4 +2046,184 @@
     ],
     "description": " Get the dropped files."
   },
+  "fs read dir": {
+    "prefix": "nw-fs-read-dir",
+    "body": [
+      "const { readdir } = require(\"node:fs/promises\");",
+      "readdir(\"${1:dir}\", { recursive: ${2:true} })",
+      "  .then((files) => {",
+      "    ${3:console.log(files);}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Reads the contents of a directory."
+  },
+  "fs read dir sync": {
+    "prefix": "nw-fs-read-dir-sync",
+    "body": [
+      "const { readdirSync } = require(\"node:fs\");",
+      "const files = readdirSync(\"${1:dir}\", { recursive: ${2:true} });",
+      "${3:console.log(files);}",
+    ],
+    "description": " (sync) Reads the contents of a directory."
+  },
+  "fs read file": {
+    "prefix": "nw-fs-read-file",
+    "body": [
+      "const { readFile } = require(\"node:fs/promises\");",
+      "readFile(\"${1:file}\")",
+      "  .then((buffer) => {",
+      "    ${2:console.log(buffer.toString());}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Reads a file."
+  },
+  "fs read file sync": {
+    "prefix": "nw-fs-read-file-sync",
+    "body": [
+      "const { readFileSync } = require(\"node:fs\");",
+      "const ${1:buffer} = readFileSync(\"${2:file}\");",
+      "${3:console.log(buffer.toString());}",
+    ],
+    "description": " (sync) Reads a file."
+  },
+  "fs write file": {
+    "prefix": "nw-fs-write-file",
+    "body": [
+      "const { writeFile } = require(\"node:fs/promises\");",
+      "writeFile(\"${1:file}\", ${2:data})",
+      "  .then(() => {",
+      "    ${3}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Writes data to a file."
+  },
+  "fs write file sync": {
+    "prefix": "nw-fs-write-file-sync",
+    "body": [
+      "const { writeFileSync } = require(\"node:fs\");",
+      "writeFileSync(\"${1:file}\", ${2:data});",
+    ],
+    "description": " (sync) Writes data to a file."
+  },
+  "fs copy": {
+    "prefix": "nw-fs-copy",
+    "body": [
+      "const { cp } = require(\"node:fs/promises\");",
+      "cp(\"${1:src}\", \"${2:dest}\", { recursive: true })",
+      "  .then(() => {",
+      "    ${3}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Copies the entire directory structure from src to dest."
+  },
+  "fs copy sync": {
+    "prefix": "nw-fs-copy-sync",
+    "body": [
+      "const { cpSync } = require(\"node:fs\");",
+      "cpSync(\"${1:src}\", \"${2:dest}\", { recursive: true });",
+    ],
+    "description": " (sync) Copies the entire directory structure from src to dest."
+  },
+  "fs rename": {
+    "prefix": "nw-fs-rename",
+    "body": [
+      "const { rename } = require(\"node:fs/promises\");",
+      "rename(\"${1:oldPath}\", \"${2:newPath}\")",
+      "  .then(() => {",
+      "    ${3}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Renames the file from oldPath to newPath."
+  },
+  "fs rename sync": {
+    "prefix": "nw-fs-rename-sync",
+    "body": [
+      "const { renameSync } = require(\"node:fs\");",
+      "renameSync(\"${1:oldPath}\", \"${2:newPath}\");",
+    ],
+    "description": " (sync) Renames the file from oldPath to newPath."
+  },
+  "fs remove": {
+    "prefix": "nw-fs-remove",
+    "body": [
+      "const { rm } = require(\"node:fs/promises\");",
+      "rm(\"${1:targetPath}\", { force: true, recursive: true })",
+      "  .then(() => {",
+      "    ${2}",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });"
+    ],
+    "description": " Removes files and directories."
+  },
+  "fs remove sync": {
+    "prefix": "nw-fs-remove-sync",
+    "body": [
+      "const { rmSync } = require(\"node:fs\");",
+      "rmSync(\"${1:targetPath}\", { force: true, recursive: true });",
+    ],
+    "description": " (sync) Removes files and directories."
+  },
+  "cp exec": {
+    "prefix": "nw-cp-exec",
+    "body": [
+      "const exec = require(\"node:util\").promisify(require(\"node:child_process\").exec);",
+      "exec(\"${1:command}\")",
+      "  .then(({ stdout, stderr }) => {",
+      "    console.log(`stdout: \\${stdout}`);",
+      "    console.error(`stderr: \\${stderr}`);",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });",
+    ],
+    "description": " Executes a command."
+  },
+  "cp exec sync": {
+    "prefix": "nw-cp-exec-sync",
+    "body": [
+      "const { execSync } = require(\"node:child_process\");",
+      "const stdout = execSync(\"${1:command}\");",
+    ],
+    "description": " (sync) Executes a command."
+  },
+  "cp exec file": {
+    "prefix": "nw-cp-exec-file",
+    "body": [
+      "const execFile = require(\"node:util\").promisify(require(\"node:child_process\").execFile);",
+      "execFile(\"${1:executablFile}\", [${2:args}])",
+      "  .then(({ stdout, stderr }) => {",
+      "    console.log(`stdout: \\${stdout}`);",
+      "    console.error(`stderr: \\${stderr}`);",
+      "  })",
+      "  .catch((err) => {",
+      "    console.error(err);",
+      "  });",
+    ],
+    "description": " Executes an executable file."
+  },
+  "cp exec file sync": {
+    "prefix": "nw-cp-exec-file-sync",
+    "body": [
+      "const { execFileSync } = require(\"node:child_process\");",
+      "const stdout = execFileSync(\"${1:executablFile}\", [${2:args}]);",
+    ],
+    "description": " (sync) Executes an executable file."
+  },
 }

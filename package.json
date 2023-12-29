@@ -3,7 +3,7 @@
   "displayName": "NW.js Snippets",
   "description": "NW.js snippets created by ssnangua",
   "publisher": "ssnangua",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "scripts": {
     "package": "npx vsce package",
     "publish": "npx vsce publish"
