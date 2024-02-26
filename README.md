@@ -49,10 +49,16 @@ All js snippets are start with `nw`:
 | `nw-getCurrentScreen`         | Get current screen                                             |
 | `nw-hideWindowInsteadOfClose` | Hide window instead of close                                   |
 | `nw-draggable`                | Drag window by element                                         |
+| `nw-showBackgroundDevtools`   | Show Background DevTools.                                      |
+| `nw-drop-files`               | Get the dropped files.                                         |
 | `nw-getScript`                | Get script                                                     |
 | `nw-ini`                      | Read and write .ini files.                                     |
 | `nw-json`                     | Read and write .json files.                                    |
-| `nw-drop-files`               | Get the dropped files.                                         |
+
+#### Node.js
+
+| Prefix                        | Snippet Description                                            |
+| ----------------------------- | -------------------------------------------------------------- |
 | `nw-fs-read-dir`              | Reads the contents of a directory.                             |
 | `nw-fs-read-dir-sync`         | (sync) Reads the contents of a directory.                      |
 | `nw-fs-read-file`             | Reads a file.                                                  |
@@ -65,6 +71,7 @@ All js snippets are start with `nw`:
 | `nw-fs-rename-sync`           | (sync) Renames the file from oldPath to newPath.               |
 | `nw-fs-remove`                | Removes files and directories.                                 |
 | `nw-fs-remove-sync`           | (sync) Removes files and directories.                          |
+| `nw-fs-exists-sync`           | (sync) Removes files and directories.                          |
 | `nw-cp-exec`                  | Executes a command.                                            |
 | `nw-cp-exec-sync`             | (sync) Executes a command.                                     |
 | `nw-cp-exec-file`             | Executes an executable file.                                   |

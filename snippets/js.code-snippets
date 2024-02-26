@@ -2046,6 +2046,19 @@
     ],
     "description": " Get the dropped files."
   },
+  "Show Background DevTools": {
+    "prefix": "nw-show-background-devtools",
+    "body": [
+      "function showBackgroundDevTools() {",
+      "  chrome.developerPrivate.openDevTools({",
+      "    renderViewId: -1,",
+      "    renderProcessId: -1,",
+      "    extensionId: chrome.runtime.id,",
+      "  });",
+      "}"
+    ],
+    "description": " Show Background DevTools."
+  },
   "fs read dir": {
     "prefix": "nw-fs-read-dir",
     "body": [
@@ -2179,6 +2192,14 @@
       "rmSync(\"${1:targetPath}\", { force: true, recursive: true });",
     ],
     "description": " (sync) Removes files and directories."
+  },
+  "fs exists sync": {
+    "prefix": "nw-fs-exists-sync",
+    "body": [
+      "const { existsSync } = require(\"node:fs\");",
+      "const result = existsSync(\"${1:targetPath}\");",
+    ],
+    "description": " (sync) Returns `true` if the path exists, `false` otherwise.."
   },
   "cp exec": {
     "prefix": "nw-cp-exec",
